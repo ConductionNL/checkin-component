@@ -2038,7 +2038,16 @@ paths:
               - asc
               - desc
         -
-          name: 'order[contact]'
+          name: 'order[reference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[person]'
           in: query
           required: false
           schema:
@@ -2138,13 +2147,29 @@ paths:
           style: form
           explode: true
         -
-          name: contact
+          name: reference
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'contact[]'
+          name: 'reference[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: person
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'person[]'
           in: query
           required: false
           schema:
@@ -3078,6 +3103,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[reference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[name]'
           in: query
           required: false
@@ -3096,7 +3130,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[location]'
+          name: 'order[place]'
           in: query
           required: false
           schema:
@@ -3196,6 +3230,22 @@ paths:
           style: form
           explode: true
         -
+          name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'reference[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: name
           in: query
           required: false
@@ -3228,13 +3278,13 @@ paths:
           style: form
           explode: true
         -
-          name: location
+          name: place
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'location[]'
+          name: 'place[]'
           in: query
           required: false
           schema:
@@ -4463,10 +4513,13 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node-read'
-        contact:
+        person:
           description: 'The contact details of this checkin'
           externalDocs:
             url: 'http://schema.org/url'
@@ -4489,20 +4542,20 @@ components:
           nullable: true
       required:
         - node
-        - contact
+        - person
         - user
     Checkin-write:
       type: object
       description: 'An entity representing an checkin.'
       required:
         - node
-        - contact
+        - person
         - user
       properties:
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node-write'
-        contact:
+        person:
           description: 'The contact details of this checkin'
           externalDocs:
             url: 'http://schema.org/url'
@@ -4532,10 +4585,13 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node:jsonld-read'
-        contact:
+        person:
           description: 'The contact details of this checkin'
           externalDocs:
             url: 'http://schema.org/url'
@@ -4558,14 +4614,14 @@ components:
           nullable: true
       required:
         - node
-        - contact
+        - person
         - user
     'Checkin:jsonld-write':
       type: object
       description: 'An entity representing an checkin.'
       required:
         - node
-        - contact
+        - person
         - user
       properties:
         '@context':
@@ -4580,7 +4636,7 @@ components:
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node:jsonld-write'
-        contact:
+        person:
           description: 'The contact details of this checkin'
           externalDocs:
             url: 'http://schema.org/url'
@@ -4601,6 +4657,9 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -4609,8 +4668,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        location:
-          description: 'The location of this node'
+        place:
+          description: 'The place of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -4631,7 +4690,7 @@ components:
           format: date-time
           nullable: true
       required:
-        - location
+        - place
         - organization
     Node-write:
       type: object
@@ -4645,8 +4704,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        location:
-          description: 'The location of this node'
+        place:
+          description: 'The place of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -4656,7 +4715,7 @@ components:
             url: 'http://schema.org/url'
           type: string
       required:
-        - location
+        - place
         - organization
     'Node:jsonld-read':
       type: object
@@ -4678,6 +4737,9 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -4686,8 +4748,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        location:
-          description: 'The location of this node'
+        place:
+          description: 'The place of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -4708,7 +4770,7 @@ components:
           format: date-time
           nullable: true
       required:
-        - location
+        - place
         - organization
     'Node:jsonld-write':
       type: object
@@ -4731,8 +4793,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        location:
-          description: 'The location of this node'
+        place:
+          description: 'The place of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -4742,7 +4804,7 @@ components:
             url: 'http://schema.org/url'
           type: string
       required:
-        - location
+        - place
         - organization
 definitions:
   Checkin-read:
@@ -4752,10 +4814,15 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      contact:
+      reference:
+        description: 'The human readable id for this node'
+        type: string
+        example: Q32-AD8
+        maxLength: 255
+      person:
         description: 'The contact details of this checkin'
         type: string
-        example: 'https://example.org/contacts/1'
+        example: 'https://example.org/people/1'
         format: url
       user:
         description: 'The user that dit the check'
@@ -4774,15 +4841,15 @@ definitions:
         description: 'The node where this checkin takes place'
         type: \Node
     required:
-      - contact
+      - person
       - user
       - node
   Checkin-write:
     properties:
-      contact:
+      person:
         description: 'The contact details of this checkin'
         type: string
-        example: 'https://example.org/contacts/1'
+        example: 'https://example.org/people/1'
         format: url
       user:
         description: 'The user that dit the check'
@@ -4793,7 +4860,7 @@ definitions:
         description: 'The node where this checkin takes place'
         type: \Node
     required:
-      - contact
+      - person
       - user
       - node
   Node-read:
@@ -4803,6 +4870,11 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      reference:
+        description: 'The human readable id for this node'
+        type: string
+        example: Q32-AD8
+        maxLength: 255
       name:
         description: 'The name of the invoice'
         type: string
@@ -4813,10 +4885,10 @@ definitions:
         type: string
         example: 'This is the best invoice ever'
         maxLength: 255
-      location:
-        description: 'The location of this node'
+      place:
+        description: 'The place of this node'
         type: string
-        example: 'https://example.org/locations/1'
+        example: 'https://example.org/places/1'
         format: url
       organization:
         description: 'The organization that ownes this node'
@@ -4832,7 +4904,7 @@ definitions:
         type: \DateTime
         example: '20190101'
     required:
-      - location
+      - place
       - organization
   Node-write:
     properties:
@@ -4846,10 +4918,10 @@ definitions:
         type: string
         example: 'This is the best invoice ever'
         maxLength: 255
-      location:
-        description: 'The location of this node'
+      place:
+        description: 'The place of this node'
         type: string
-        example: 'https://example.org/locations/1'
+        example: 'https://example.org/places/1'
         format: url
       organization:
         description: 'The organization that ownes this node'
@@ -4857,8 +4929,61 @@ definitions:
         example: 'https://example.org/organizations/1'
         format: url
     required:
-      - location
+      - place
       - organization
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-08-22 17:55:39'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-08-22 17:55:39'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -4963,12 +5088,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 17:55:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 17:55:39'
     required: []
   AuditTrail-write:
     properties:
@@ -4976,59 +5101,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-08-22 05:41:46'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-08-22 05:41:46'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -5043,15 +5115,15 @@ tags:
     description: |
       An entity representing an node.
       
-      A node being a point where users can checkin
+      A node being a point where users can check in
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -5062,15 +5134,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -

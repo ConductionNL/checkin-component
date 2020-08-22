@@ -63,6 +63,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=CheckinRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="checkin_reference", columns={"reference"})})
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -86,6 +87,20 @@ class Checkin
     private $id;
 
     /**
+     * @var string The human readable id for this node
+     *
+     * @Gedmo\Versioned
+     *
+     * @example Q32-AD8
+     * @Groups({"read"})
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
+     */
+    private $reference;
+
+    /**
      * @var Node The node where this checkin takes place
      *
      * @Groups({"read","write"})
@@ -98,14 +113,14 @@ class Checkin
     /**
      * @var string The contact details of this checkin
      *
-     * @example https://example.org/contacts/1
+     * @example https://example.org/people/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $contact;
+    private $person;
 
     /**
      * @var string The user that dit the check
@@ -141,6 +156,24 @@ class Checkin
      */
     private $dateModified;
 
+    /**
+     *  @ORM\PrePersist
+     *  @ORM\PreUpdate
+     *
+     *  */
+    public function prePersist()
+    {
+        // If no reference has been provided we want to make one
+        if(!$this->getReference()) {
+            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
+            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
+
+            $reference = $part1 . '-' . $part2;
+            $this->setReference($reference);
+        }
+    }
+
     public function getId()
     {
         return $this->id;
@@ -149,6 +182,18 @@ class Checkin
     public function setId(string $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }
@@ -165,14 +210,14 @@ class Checkin
         return $this;
     }
 
-    public function getContact(): ?string
+    public function getPerson(): ?string
     {
-        return $this->contact;
+        return $this->person;
     }
 
-    public function setContact(string $contact): self
+    public function setPerson(string $person): self
     {
-        $this->contact = $contact;
+        $this->person = $person;
 
         return $this;
     }

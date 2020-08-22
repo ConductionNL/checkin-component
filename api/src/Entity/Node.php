@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * An entity representing an node.
  *
- * A node being a point where users can checkin  
+ * A node being a point where users can check in as part of a place
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  *
@@ -63,6 +63,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=NodeRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="node_reference", columns={"reference"})})
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -84,6 +85,20 @@ class Node
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
+
+    /**
+     * @var string The human readable id for this node
+     *
+     * @Gedmo\Versioned
+     *
+     * @example Q32-AD8
+     * @Groups({"read"})
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
+     */
+    private $reference;
 
     /**
      * @var string The name of the invoice
@@ -114,16 +129,16 @@ class Node
     private $description;
 
     /**
-     * @var string The location of this node
+     * @var string The place of this node
      *
-     * @example https://example.org/locations/1
+     * @example https://example.org/places/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $location;
+    private $place;
 
     /**
      * @var string The organization that ownes this node
@@ -169,6 +184,23 @@ class Node
         $this->checkins = new ArrayCollection();
     }
 
+     /**
+     *  @ORM\PrePersist
+     *  @ORM\PreUpdate
+     *
+     *  */
+    public function prePersist()
+    {
+        if(!$this->getReference()){
+            $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+
+            $reference = $part1.'-'.$part2;
+            $this->setReference($reference);
+        }
+    }
+
     public function getId()
     {
         return $this->id;
@@ -177,6 +209,18 @@ class Node
     public function setId(string $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }
@@ -205,14 +249,14 @@ class Node
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getPlace(): ?string
     {
-        return $this->location;
+        return $this->place;
     }
 
-    public function setLocation(string $location): self
+    public function setPlace(string $place): self
     {
-        $this->location = $location;
+        $this->place = $place;
 
         return $this;
     }
