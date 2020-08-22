@@ -35,6 +35,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
+        $node->setReference('LQ0-578');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'75f36e60-c798-41bb-ae11-4bc4e23aa147']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
@@ -43,6 +44,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
+        $node->setReference('TH6-7BS');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'014016d0-292e-4373-8bd2-4a0e427ac059']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
@@ -51,6 +53,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Bar');
         $node->setDescription('Bar');
+        $node->setReference('ROW-OJ8');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'751c8a9f-f7cf-4f45-9c16-72ed74d4eba1']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
@@ -59,6 +62,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
+        $node->setReference('LT4-K75');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'c6f5ec24-7321-4176-a588-a3bb0bf2b62e']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
@@ -67,6 +71,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
+        $node->setReference('IDP-DQK');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'21cc4b1f-f9d6-4059-95e3-67535d5dfb9a']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
@@ -75,6 +80,7 @@ class ZuiddrechtFixtures extends Fixture
         $node = New Node();
         $node->setName('Graven zaal');
         $node->setDescription('Graven zaal');
+        $node->setReference('I2K-HTI');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'9f847ce1-eeb6-4e86-ad58-86dda3e18302']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $manager->persist($node);
