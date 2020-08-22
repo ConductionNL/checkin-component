@@ -191,12 +191,12 @@ class Node
      *  */
     public function prePersist()
     {
-        $validChars ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $part1=substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
-        $part2=substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
 
         $reference = $part1.'-'.$part2;
-        $this->setReference(strtoupper($reference));
+        $this->setReference($reference);
     }
 
     public function getId()
