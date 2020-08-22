@@ -96,7 +96,7 @@ class Checkin
      * @Assert\Length(
      *     max=255
      * )
-     * @ORM\Column(type="string", length=7, nullable=true)
+     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
      */
     private $reference;
 
@@ -163,12 +163,15 @@ class Checkin
      *  */
     public function prePersist()
     {
-        $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
-        $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        // If no reference has been provided we want to make one
+        if(!$this->getReference()) {
+            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
+            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
 
-        $reference = $part1.'-'.$part2;
-        $this->setReference($reference);
+            $reference = $part1 . '-' . $part2;
+            $this->setReference($reference);
+        }
     }
 
     public function getId()

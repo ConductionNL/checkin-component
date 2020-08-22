@@ -96,7 +96,7 @@ class Node
      * @Assert\Length(
      *     max=255
      * )
-     * @ORM\Column(type="string", length=7, nullable=true)
+     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
      */
     private $reference;
 
@@ -129,16 +129,16 @@ class Node
     private $description;
 
     /**
-     * @var string The location of this node
+     * @var string The place of this node
      *
-     * @example https://example.org/locations/1
+     * @example https://example.org/places/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $location;
+    private $place;
 
     /**
      * @var string The organization that ownes this node
@@ -191,12 +191,14 @@ class Node
      *  */
     public function prePersist()
     {
-        $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
-        $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        if(!$this->getReference()){
+            $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
 
-        $reference = $part1.'-'.$part2;
-        $this->setReference($reference);
+            $reference = $part1.'-'.$part2;
+            $this->setReference($reference);
+        }
     }
 
     public function getId()
@@ -247,14 +249,14 @@ class Node
         return $this;
     }
 
-    public function getLocation(): ?string
+    public function getPlace(): ?string
     {
-        return $this->location;
+        return $this->place;
     }
 
-    public function setLocation(string $location): self
+    public function setPlace(string $place): self
     {
-        $this->location = $location;
+        $this->place = $place;
 
         return $this;
     }
