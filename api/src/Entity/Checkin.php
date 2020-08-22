@@ -86,6 +86,20 @@ class Checkin
     private $id;
 
     /**
+     * @var string The human readable id for this node
+     *
+     * @Gedmo\Versioned
+     *
+     * @example Q32-AD8
+     * @Groups({"read"})
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @ORM\Column(type="string", length=7, nullable=true)
+     */
+    private $reference;
+
+    /**
      * @var Node The node where this checkin takes place
      *
      * @Groups({"read","write"})
@@ -141,6 +155,21 @@ class Checkin
      */
     private $dateModified;
 
+    /**
+     *  @ORM\PrePersist
+     *  @ORM\PreUpdate
+     *
+     *  */
+    public function prePersist()
+    {
+        $validChars ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $part1=substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        $part2=substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+
+        $reference = $part1.'-'.$part2;
+        $this->setReference(strtoupper($reference));
+    }
+
     public function getId()
     {
         return $this->id;
@@ -149,6 +178,18 @@ class Checkin
     public function setId(string $id): self
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }
