@@ -2038,6 +2038,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[reference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[contact]'
           in: query
           required: false
@@ -2129,6 +2138,22 @@ paths:
             type: string
         -
           name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'reference[]'
           in: query
           required: false
           schema:
@@ -3078,6 +3103,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[reference]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[name]'
           in: query
           required: false
@@ -3187,6 +3221,22 @@ paths:
             type: string
         -
           name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'reference[]'
           in: query
           required: false
           schema:
@@ -4463,6 +4513,10 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
+          nullable: true
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node-read'
@@ -4532,6 +4586,10 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
+          nullable: true
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node:jsonld-read'
@@ -4601,6 +4659,10 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
+          nullable: true
         name:
           description: 'The name of the invoice'
           type: string
@@ -4678,6 +4740,10 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
+        reference:
+          description: 'The human readable id for this node'
+          type: string
+          nullable: true
         name:
           description: 'The name of the invoice'
           type: string
@@ -4752,6 +4818,11 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      reference:
+        description: 'The human readable id for this node'
+        type: string
+        example: Q32-AD8
+        maxLength: 255
       contact:
         description: 'The contact details of this checkin'
         type: string
@@ -4803,6 +4874,11 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
+      reference:
+        description: 'The human readable id for this node'
+        type: string
+        example: Q32-AD8
+        maxLength: 255
       name:
         description: 'The name of the invoice'
         type: string
@@ -4963,12 +5039,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 06:29:42'
+        example: '2020-08-22 10:14:52'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 06:29:42'
+        example: '2020-08-22 10:14:52'
     required: []
   AuditTrail-write:
     properties:
@@ -5016,12 +5092,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 06:29:42'
+        example: '2020-08-22 10:14:52'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 06:29:42'
+        example: '2020-08-22 10:14:52'
     required: []
   ChangeLog-write:
     properties:

@@ -113,14 +113,14 @@ class Checkin
     /**
      * @var string The contact details of this checkin
      *
-     * @example https://example.org/contacts/1
+     * @example https://example.org/people/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $contact;
+    private $person;
 
     /**
      * @var string The user that dit the check
@@ -207,14 +207,14 @@ class Checkin
         return $this;
     }
 
-    public function getContact(): ?string
+    public function getPerson(): ?string
     {
-        return $this->contact;
+        return $this->person;
     }
 
-    public function setContact(string $contact): self
+    public function setPerson(string $person): self
     {
-        $this->contact = $contact;
+        $this->person = $person;
 
         return $this;
     }
