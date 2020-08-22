@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * An entity representing an node.
  *
- * A node being a point where users can check in
+ * A node being a point where users can check in as part of a place
  *
  * @author Ruben van der Linde <ruben@conduction.nl>
  *
