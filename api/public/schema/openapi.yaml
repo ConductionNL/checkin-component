@@ -4969,12 +4969,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 12:04:17'
+        example: '2020-08-22 17:55:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 12:04:17'
+        example: '2020-08-22 17:55:39'
     required: []
   ChangeLog-write:
     properties:
@@ -5088,12 +5088,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 12:04:17'
+        example: '2020-08-22 17:55:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 12:04:17'
+        example: '2020-08-22 17:55:39'
     required: []
   AuditTrail-write:
     properties:
