@@ -60,7 +60,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post"
  *     }
  * )
- * @ORM\Entity(repositoryClass=NodeRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\NodeRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="node_reference", columns={"reference"})})
