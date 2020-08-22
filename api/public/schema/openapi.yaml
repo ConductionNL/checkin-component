@@ -4963,12 +4963,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 06:29:42'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 06:29:42'
     required: []
   AuditTrail-write:
     properties:
@@ -5016,12 +5016,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 06:29:42'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 05:41:46'
+        example: '2020-08-22 06:29:42'
     required: []
   ChangeLog-write:
     properties:
@@ -5043,7 +5043,7 @@ tags:
     description: |
       An entity representing an node.
       
-      A node being a point where users can checkin
+      A node being a point where users can check in
   -
     name: AuditTrail
     description: |
