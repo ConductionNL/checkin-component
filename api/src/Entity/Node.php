@@ -63,7 +63,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=NodeRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
- * @Table(uniqueConstraints={@UniqueConstraint(name="search_reference", columns={"reference"})})
+ * @ORM\Table(uniqueConstraints={@UniqueConstraint(name="node_reference", columns={"reference"})})
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
