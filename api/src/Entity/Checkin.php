@@ -7,20 +7,14 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use Cassandra\Date;
 use DateInterval;
 use DateTime;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * An entity representing an checkin.
@@ -189,20 +183,20 @@ class Checkin
     public function prePersist()
     {
         // If no reference has been provided we want to make one
-        if(!$this->getReference()) {
+        if (!$this->getReference()) {
             $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
             $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
 
-            $reference = $part1 . '-' . $part2;
+            $reference = $part1.'-'.$part2;
             $this->setReference($reference);
         }
 
         $this->createDateToDestory();
-
     }
 
-    public function createDateToDestory(){
+    public function createDateToDestory()
+    {
         $date = new DateTime('today');
         $date->add(new DateInterval('P14D'));
 
