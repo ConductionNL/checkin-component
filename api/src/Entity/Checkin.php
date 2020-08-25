@@ -234,6 +234,11 @@ class Checkin
         return $this;
     }
 
+    public function getDateCreated(): ?DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
     public function setDateCreated(DateTimeInterface $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
