@@ -132,7 +132,7 @@ class Checkin
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $user;
+    private $userUrl;
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -222,14 +222,14 @@ class Checkin
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUserUrl(): ?string
     {
-        return $this->user;
+        return $this->userUrl;
     }
 
-    public function setUser(string $user): self
+    public function setUserUrl(string $userUrl): self
     {
-        $this->user = $user;
+        $this->userUrl = $userUrl;
 
         return $this;
     }
