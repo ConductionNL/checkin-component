@@ -7,9 +7,6 @@ use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Ramsey\Uuid\Uuid;
-use DateTime;
 
 class ZuiddrechtFixtures extends Fixture
 {
@@ -32,7 +29,7 @@ class ZuiddrechtFixtures extends Fixture
             return false;
         }
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LQ0-578');
@@ -41,7 +38,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('TH6-7BS');
@@ -50,7 +47,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Bar');
         $node->setDescription('Bar');
         $node->setReference('ROW-OJ8');
@@ -59,7 +56,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LT4-K75');
@@ -68,7 +65,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('IDP-DQK');
@@ -77,7 +74,7 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        $node = New Node();
+        $node = new Node();
         $node->setName('Graven zaal');
         $node->setDescription('Graven zaal');
         $node->setReference('I2K-HTI');
