@@ -7,18 +7,14 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use DateInterval;
 use DateTime;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * An entity representing an checkin.
@@ -60,7 +56,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post"
  *     }
  * )
- * @ORM\Entity(repositoryClass=CheckinRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\CheckinRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="checkin_reference", columns={"reference"})})
@@ -132,7 +128,18 @@ class Checkin
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $user;
+    private $userUrl;
+
+    /**
+     * @var DateTime The moment this object will be destroyed
+     *
+     * @example 20190101
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateToDestroy;
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -156,6 +163,18 @@ class Checkin
      */
     private $dateModified;
 
+    public function getDateToDestroy(): ?DateTimeInterface
+    {
+        return $this->dateToDestroy;
+    }
+
+    public function setDateToDestroy(DateTimeInterface $dateToDestroy): self
+    {
+        $this->dateToDestroy = $dateToDestroy;
+
+        return $this;
+    }
+
     /**
      *  @ORM\PrePersist
      *  @ORM\PreUpdate
@@ -164,14 +183,24 @@ class Checkin
     public function prePersist()
     {
         // If no reference has been provided we want to make one
-        if(!$this->getReference()) {
+        if (!$this->getReference()) {
             $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
             $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
 
-            $reference = $part1 . '-' . $part2;
+            $reference = $part1.'-'.$part2;
             $this->setReference($reference);
         }
+
+        $this->createDateToDestory();
+    }
+
+    public function createDateToDestory()
+    {
+        $date = new DateTime('today');
+        $date->add(new DateInterval('P14D'));
+
+        $this->setDateToDestroy($date);
     }
 
     public function getId()
@@ -222,16 +251,21 @@ class Checkin
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUserUrl(): ?string
     {
-        return $this->user;
+        return $this->userUrl;
     }
 
-    public function setUser(string $user): self
+    public function setUserUrl(string $userUrl): self
     {
-        $this->user = $user;
+        $this->userUrl = $userUrl;
 
         return $this;
+    }
+
+    public function getDateCreated(): ?DateTimeInterface
+    {
+        return $this->dateCreated;
     }
 
     public function setDateCreated(DateTimeInterface $dateCreated): self

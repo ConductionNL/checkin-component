@@ -11,14 +11,11 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * An entity representing an node.
@@ -60,7 +57,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post"
  *     }
  * )
- * @ORM\Entity(repositoryClass=NodeRepository::class)
+ * @ORM\Entity(repositoryClass=App\Repository\NodeRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="node_reference", columns={"reference"})})
@@ -184,17 +181,17 @@ class Node
         $this->checkins = new ArrayCollection();
     }
 
-     /**
+    /**
      *  @ORM\PrePersist
      *  @ORM\PreUpdate
      *
      *  */
     public function prePersist()
     {
-        if(!$this->getReference()){
-            $validChars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
-            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3/strlen($validChars)) )),1,3);
+        if (!$this->getReference()) {
+            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
+            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
 
             $reference = $part1.'-'.$part2;
             $this->setReference($reference);
