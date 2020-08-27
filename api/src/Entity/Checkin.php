@@ -7,6 +7,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use DateInterval;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -130,6 +131,17 @@ class Checkin
     private $userUrl;
 
     /**
+     * @var DateTime The moment this object will be destroyed
+     *
+     * @example 20190101
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateToDestroy;
+
+    /**
      * @var DateTime The moment this request was created by the submitter
      *
      * @example 20190101
@@ -151,6 +163,18 @@ class Checkin
      */
     private $dateModified;
 
+    public function getDateToDestroy(): ?DateTimeInterface
+    {
+        return $this->dateToDestroy;
+    }
+
+    public function setDateToDestroy(DateTimeInterface $dateToDestroy): self
+    {
+        $this->dateToDestroy = $dateToDestroy;
+
+        return $this;
+    }
+
     /**
      *  @ORM\PrePersist
      *  @ORM\PreUpdate
@@ -167,6 +191,16 @@ class Checkin
             $reference = $part1.'-'.$part2;
             $this->setReference($reference);
         }
+
+        $this->createDateToDestory();
+    }
+
+    public function createDateToDestory()
+    {
+        $date = new DateTime('today');
+        $date->add(new DateInterval('P14D'));
+
+        $this->setDateToDestroy($date);
     }
 
     public function getId()
