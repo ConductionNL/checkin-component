@@ -2056,7 +2056,16 @@ paths:
               - asc
               - desc
         -
-          name: 'order[user]'
+          name: 'order[userUrl]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateToDestroy]'
           in: query
           required: false
           schema:
@@ -2082,6 +2091,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'dateToDestroy[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateToDestroy[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateToDestroy[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateToDestroy[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -2179,13 +2212,13 @@ paths:
           style: form
           explode: true
         -
-          name: user
+          name: userUrl
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'user[]'
+          name: 'userUrl[]'
           in: query
           required: false
           schema:
@@ -2194,6 +2227,18 @@ paths:
               type: string
           style: form
           explode: true
+        -
+          name: dateToDestroy
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateToDestroy[]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: dateCreated
           in: query
@@ -3214,121 +3259,7 @@ paths:
           schema:
             type: string
         -
-          name: id
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: reference
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'reference[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: name
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'name[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: description
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'description[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: place
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'place[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: organization
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'organization[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -4524,13 +4455,18 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        user:
+        userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
+        dateToDestroy:
+          description: 'The moment this object will be destroyed'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
-          writeOnly: true
           description: 'The moment this request was created by the submitter'
           type: string
           format: date-time
@@ -4543,14 +4479,12 @@ components:
       required:
         - node
         - person
-        - user
     Checkin-write:
       type: object
       description: 'An entity representing an checkin.'
       required:
         - node
         - person
-        - user
       properties:
         node:
           description: 'The node where this checkin takes place'
@@ -4560,11 +4494,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        user:
+        userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
     'Checkin:jsonld-read':
       type: object
       description: 'An entity representing an checkin.'
@@ -4596,13 +4531,18 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        user:
+        userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
+        dateToDestroy:
+          description: 'The moment this object will be destroyed'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
-          writeOnly: true
           description: 'The moment this request was created by the submitter'
           type: string
           format: date-time
@@ -4615,14 +4555,12 @@ components:
       required:
         - node
         - person
-        - user
     'Checkin:jsonld-write':
       type: object
       description: 'An entity representing an checkin.'
       required:
         - node
         - person
-        - user
       properties:
         '@context':
           readOnly: true
@@ -4641,11 +4579,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        user:
+        userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
     Node-read:
       type: object
       description: 'An entity representing an node.'
@@ -4824,11 +4763,15 @@ definitions:
         type: string
         example: 'https://example.org/people/1'
         format: url
-      user:
+      userUrl:
         description: 'The user that dit the check'
         type: string
         example: 'https://example.org/users/1'
         format: url
+      dateToDestroy:
+        description: 'The moment this object will be destroyed'
+        type: \DateTime
+        example: '20190101'
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -4842,7 +4785,6 @@ definitions:
         type: \Node
     required:
       - person
-      - user
       - node
   Checkin-write:
     properties:
@@ -4851,7 +4793,7 @@ definitions:
         type: string
         example: 'https://example.org/people/1'
         format: url
-      user:
+      userUrl:
         description: 'The user that dit the check'
         type: string
         example: 'https://example.org/users/1'
@@ -4861,7 +4803,6 @@ definitions:
         type: \Node
     required:
       - person
-      - user
       - node
   Node-read:
     properties:
@@ -4931,59 +4872,6 @@ definitions:
     required:
       - place
       - organization
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-08-22 17:55:39'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-08-22 17:55:39'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -5088,12 +4976,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-22 17:55:39'
+        example: '2020-09-03 11:10:39'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-22 17:55:39'
+        example: '2020-09-03 11:10:39'
     required: []
   AuditTrail-write:
     properties:
@@ -5101,6 +4989,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-03 11:10:39'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-03 11:10:39'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -5115,15 +5056,15 @@ tags:
     description: |
       An entity representing an node.
       
-      A node being a point where users can check in
+      A node being a point where users can check in as part of a place
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -5134,15 +5075,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
