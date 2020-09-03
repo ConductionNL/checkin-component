@@ -150,6 +150,18 @@ class Node
     private $organization;
 
     /**
+     * @var string The url to a page of the organization of this node
+     *
+     * @example https://example.org/succesful-checkin
+     *
+     * @Groups({"read","write"})
+     * @Assert\Url
+     * @Assert\NotNull
+     * @ORM\Column(type="string", length=255)
+     */
+    private $passthroughUrl;
+
+    /**
      * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="node", orphanRemoval=true)
      */
     private $checkins;
@@ -266,6 +278,18 @@ class Node
     public function setOrganization(string $organization): self
     {
         $this->organization = $organization;
+
+        return $this;
+    }
+
+    public function getPassthroughUrl(): ?string
+    {
+        return $this->passthroughUrl;
+    }
+
+    public function setPassthroughUrl(string $passthroughUrl): self
+    {
+        $this->passthroughUrl = $passthroughUrl;
 
         return $this;
     }
