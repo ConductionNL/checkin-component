@@ -125,8 +125,7 @@ class Checkin
      *
      * @Groups({"read","write"})
      * @Assert\Url
-     * @Assert\NotNull
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $userUrl;
 
