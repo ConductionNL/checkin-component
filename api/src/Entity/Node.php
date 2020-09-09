@@ -166,6 +166,13 @@ class Node
     private $checkins;
 
     /**
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json")
+     */
+    private $methods = [];
+
+    /**
      * @var DateTime The moment this request was created by the submitter
      *
      * @example 20190101
@@ -320,6 +327,18 @@ class Node
                 $checkin->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMethods(): ?array
+    {
+        return $this->methods;
+    }
+
+    public function setMethods(array $methods): self
+    {
+        $this->methods = $methods;
 
         return $this;
     }
