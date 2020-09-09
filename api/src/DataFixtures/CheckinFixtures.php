@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ZuiddrechtFixtures extends Fixture
+class CheckinFixtures extends Fixture
 {
     private $commonGroundService;
     private $params;
@@ -33,8 +33,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LQ0-578');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'8f30215c-d778-480c-ac8c-8492d17c6a15']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'2106575d-50f3-4f2b-8f0f-a2d6bc188222']));
         $manager->persist($node);
         $manager->flush();
 
@@ -42,8 +43,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('TH6-7BS');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'8f30215c-d778-480c-ac8c-8492d17c6a15']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'2106575d-50f3-4f2b-8f0f-a2d6bc188222']));
         $manager->persist($node);
         $manager->flush();
 
@@ -51,8 +53,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Bar');
         $node->setDescription('Bar');
         $node->setReference('ROW-OJ8');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'8f30215c-d778-480c-ac8c-8492d17c6a15']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'2106575d-50f3-4f2b-8f0f-a2d6bc188222']));
         $manager->persist($node);
         $manager->flush();
 
@@ -60,8 +63,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LT4-K75');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'f5b473e9-a2d8-4383-b268-265c340f4bc5']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
         $manager->persist($node);
         $manager->flush();
 
@@ -69,8 +73,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('IDP-DQK');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'f5b473e9-a2d8-4383-b268-265c340f4bc5']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
         $manager->persist($node);
         $manager->flush();
 
@@ -78,8 +83,9 @@ class ZuiddrechtFixtures extends Fixture
         $node->setName('Graven zaal');
         $node->setDescription('Graven zaal');
         $node->setReference('I2K-HTI');
+        $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'f5b473e9-a2d8-4383-b268-265c340f4bc5']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
         $manager->persist($node);
         $manager->flush();
 

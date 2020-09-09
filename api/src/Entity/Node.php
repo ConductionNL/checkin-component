@@ -64,7 +64,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","organization": "iexact","name": "iexact","description": "iexact"})
  */
 class Node
 {
@@ -150,9 +150,27 @@ class Node
     private $organization;
 
     /**
+     * @var string The url to a page of the organization of this node
+     *
+     * @example https://example.org/succesful-checkin
+     *
+     * @Groups({"read","write"})
+     * @Assert\Url
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $passthroughUrl;
+
+    /**
      * @ORM\OneToMany(targetEntity=Checkin::class, mappedBy="node", orphanRemoval=true)
      */
     private $checkins;
+
+    /**
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json")
+     */
+    private $methods = [];
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -270,6 +288,18 @@ class Node
         return $this;
     }
 
+    public function getPassthroughUrl(): ?string
+    {
+        return $this->passthroughUrl;
+    }
+
+    public function setPassthroughUrl(string $passthroughUrl): self
+    {
+        $this->passthroughUrl = $passthroughUrl;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Checkin[]
      */
@@ -297,6 +327,18 @@ class Node
                 $checkin->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMethods(): ?array
+    {
+        return $this->methods;
+    }
+
+    public function setMethods(array $methods): self
+    {
+        $this->methods = $methods;
 
         return $this;
     }
