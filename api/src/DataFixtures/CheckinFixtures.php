@@ -89,7 +89,7 @@ class CheckinFixtures extends Fixture
         $manager->persist($node);
         $manager->flush();
 
-        Node();
+        $node = new Node();
         $node->setName('Mc Donalds Zuid-Drecht');
         $node->setDescription('Mc Donalds Zuid-Drecht');
         $node->setPassthroughUrl('https://www.mcdonalds.com/nl/nl-nl.html');
