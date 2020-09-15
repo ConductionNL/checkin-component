@@ -26,9 +26,10 @@ class CheckinRepository extends ServiceEntityRepository
     {
         return $this->em->createQueryBuilder('c')
             ->update()
-            ->set('c.username', null)
-            ->set('c.email', null)
+            ->set('c.person', null)
+            ->set('c.userUrl', null)
             ->where('c.dateToArchive < NOW()')
+            ->andWhere('c.person IS NOT NULL')
             ->getQuery()
             ->getSingleScalarResult();
         $p = $q->execute();

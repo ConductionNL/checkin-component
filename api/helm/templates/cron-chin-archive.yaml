@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  # this cronjob runs “At 08:00.” https://crontab.guru/#*_*_*_*_*
-  schedule: "0 8 * * *"
+  # this cronjob runs “At 07:00.” https://crontab.guru/#*_*_*_*_*
+  schedule: "0 7 * * *"
   jobTemplate:
     spec:
       template:
@@ -22,7 +22,7 @@ spec:
             imagePullPolicy: Always
             args:
             - bin/console 
-            - app:datetodestroy
+            - app:chin:archive
             env:
             -   name: JWT_SECRET_KEY
                 value: '%kernel.project_dir%/config/jwt/private.pem'
