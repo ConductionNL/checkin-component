@@ -16,7 +16,7 @@ namespace App\Service;
 use App\Entity\Checkin;
 use Doctrine\ORM\EntityManagerInterface;
 
-class checkinService
+class CheckinService
 {
     private $em;
 

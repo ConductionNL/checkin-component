@@ -45,5 +45,7 @@ class ArchiveCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $result = $this->checkinService->archive();
+
+        var_dump($result);
     }
 }
