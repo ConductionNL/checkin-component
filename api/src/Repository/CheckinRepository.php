@@ -19,6 +19,23 @@ class CheckinRepository extends ServiceEntityRepository
         parent::__construct($registry, Checkin::class);
     }
 
+    /**
+     * Archives (or actually annonymes) older checkins
+     */
+    public function archive()
+    {
+        return $this->em->createQueryBuilder('c')
+            ->update()
+            ->set('c.username', null)
+            ->set('c.email', null)
+            ->where('c.dateToArchive < NOW()')
+            ->getQuery()
+            ->getSingleScalarResult();
+        $p = $q->execute();
+    }
+
+
+
     // /**
     //  * @return Checkin[] Returns an array of Checkin objects
     //  */

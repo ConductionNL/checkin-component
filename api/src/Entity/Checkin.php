@@ -114,7 +114,7 @@ class Checkin
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $person;
 
@@ -130,7 +130,7 @@ class Checkin
     private $userUrl;
 
     /**
-     * @var DateTime The moment this object will be destroyed
+     * @var DateTime The moment this object will be archived
      *
      * @example 20190101
      *
@@ -138,7 +138,7 @@ class Checkin
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateToDestroy;
+    private $dateToArchive;
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -162,14 +162,14 @@ class Checkin
      */
     private $dateModified;
 
-    public function getDateToDestroy(): ?DateTimeInterface
+    public function getDateToArchive(): ?DateTimeInterface
     {
-        return $this->dateToDestroy;
+        return $this->dateToArchive;
     }
 
-    public function setDateToDestroy(DateTimeInterface $dateToDestroy): self
+    public function setDateArchive(DateTimeInterface $dateToArchive): self
     {
-        $this->dateToDestroy = $dateToDestroy;
+        $this->dateToArchive = $dateToArchive;
 
         return $this;
     }
@@ -191,15 +191,15 @@ class Checkin
             $this->setReference($reference);
         }
 
-        $this->createDateToDestory();
+        $this->createDateToArchive();
     }
 
-    public function createDateToDestory()
+    public function createDateToArchive()
     {
         $date = new DateTime('today');
         $date->add(new DateInterval('P14D'));
 
-        $this->setDateToDestroy($date);
+        $this->setDateToArchive($date);
     }
 
     public function getId()
