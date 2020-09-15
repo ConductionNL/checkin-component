@@ -2065,7 +2065,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[dateToDestroy]'
+          name: 'order[dateToArchive]'
           in: query
           required: false
           schema:
@@ -2092,25 +2092,25 @@ paths:
               - asc
               - desc
         -
-          name: 'dateToDestroy[before]'
+          name: 'dateToArchive[before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateToDestroy[strictly_before]'
+          name: 'dateToArchive[strictly_before]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateToDestroy[after]'
+          name: 'dateToArchive[after]'
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateToDestroy[strictly_after]'
+          name: 'dateToArchive[strictly_after]'
           in: query
           required: false
           schema:
@@ -2228,13 +2228,13 @@ paths:
           style: form
           explode: true
         -
-          name: dateToDestroy
+          name: dateToArchive
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'dateToDestroy[]'
+          name: 'dateToArchive[]'
           in: query
           required: false
           schema:
@@ -3193,6 +3193,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[passthroughUrl]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -3260,6 +3269,24 @@ paths:
             type: string
         -
           name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: organization
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: description
           in: query
           required: false
           schema:
@@ -4455,14 +4482,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
           nullable: true
-        dateToDestroy:
-          description: 'The moment this object will be destroyed'
+        dateToArchive:
+          readOnly: true
+          description: 'The moment this object will be archived'
           type: string
           format: date-time
           nullable: true
@@ -4494,6 +4523,7 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         userUrl:
           description: 'The user that dit the check'
           externalDocs:
@@ -4531,14 +4561,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         userUrl:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
           nullable: true
-        dateToDestroy:
-          description: 'The moment this object will be destroyed'
+        dateToArchive:
+          readOnly: true
+          description: 'The moment this object will be archived'
           type: string
           format: date-time
           nullable: true
@@ -4579,6 +4611,7 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         userUrl:
           description: 'The user that dit the check'
           externalDocs:
@@ -4617,6 +4650,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4653,6 +4692,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - place
         - organization
@@ -4697,6 +4742,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4742,6 +4793,12 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
       required:
         - place
         - organization
@@ -4768,8 +4825,8 @@ definitions:
         type: string
         example: 'https://example.org/users/1'
         format: url
-      dateToDestroy:
-        description: 'The moment this object will be destroyed'
+      dateToArchive:
+        description: 'The moment this object will be archived'
         type: \DateTime
         example: '20190101'
       dateCreated:
@@ -4836,6 +4893,11 @@ definitions:
         type: string
         example: 'https://example.org/organizations/1'
         format: url
+      passthroughUrl:
+        description: 'The url to a page of the organization of this node'
+        type: string
+        example: 'https://example.org/succesful-checkin'
+        format: url
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -4868,6 +4930,11 @@ definitions:
         description: 'The organization that ownes this node'
         type: string
         example: 'https://example.org/organizations/1'
+        format: url
+      passthroughUrl:
+        description: 'The url to a page of the organization of this node'
+        type: string
+        example: 'https://example.org/succesful-checkin'
         format: url
     required:
       - place
@@ -4976,12 +5043,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-15 10:14:28'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-15 10:14:28'
     required: []
   AuditTrail-write:
     properties:
@@ -5029,12 +5096,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-15 10:14:28'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-15 10:14:28'
     required: []
   ChangeLog-write:
     properties:
