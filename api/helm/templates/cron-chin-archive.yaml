@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   # this cronjob runs “At 07:00.” https://crontab.guru/#*_*_*_*_*
-  schedule: "0 7 * * *"
+  schedule: "47 10 * * *"
   jobTemplate:
     spec:
       template:

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Checkin;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,8 +15,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CheckinRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $em;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $em)
     {
+        $this->em = $em;
         parent::__construct($registry, Checkin::class);
     }
 
@@ -24,14 +28,14 @@ class CheckinRepository extends ServiceEntityRepository
      */
     public function archive()
     {
-        return $this->em->createQueryBuilder('c')
-            ->update()
-            ->set('c.person', null)
-            ->set('c.userUrl', null)
-            ->where('c.dateToArchive < NOW()')
-            ->andWhere('c.person IS NOT NULL')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $qb = $this->em->createQueryBuilder();
+         $q = $qb->update(Checkin::class, 'c')
+            ->setParameter('now', new \DateTime('now'))
+            ->setParameter(1, null)
+            ->where('c.dateToArchive = :now')
+            ->set('c.person', '?1')
+            ->set('c.userUrl', '?1')
+            ->getQuery();
         $p = $q->execute();
     }
 

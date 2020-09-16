@@ -5,6 +5,7 @@
 namespace App\Command;
 
 use App\Service\CheckinService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,11 +14,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ArchiveCommand extends Command
 {
-
+    private $em;
     private $checkinService;
 
-    public function __construct(CheckinService $checkinService)
+    public function __construct(EntityManagerInterface $em, CheckinService $checkinService)
     {
+        $this->em = $em;
         $this->checkinService = $checkinService;
 
         parent::__construct();

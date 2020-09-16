@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Node;
+use App\Entity\Checkin;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -106,6 +107,21 @@ class CheckinFixtures extends Fixture
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
         $manager->persist($node);
         $manager->flush();
+
+        $checkin = new Checkin();
+        $checkin->setReference('Q38-AD8');
+        $checkin->setNode($node);
+        $checkin->setPerson('Hans Terwijden');
+        $manager->persist($checkin);
+        $manager->flush();
+
+        $checkin = new Checkin();
+        $checkin->setReference('Q36-AD8');
+        $checkin->setNode($node);
+        $checkin->setPerson('Jos Schelling');
+        $manager->persist($checkin);
+        $manager->flush();
+
 
         $manager->flush();
     }

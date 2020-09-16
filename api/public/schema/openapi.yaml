@@ -2125,7 +2125,7 @@ paths:
           schema:
             type: string
         -
-          name: 'dateToDestroy[before]'
+          name: 'dateToArchive[before]'
           in: query
           required: false
           schema:
@@ -2273,7 +2273,7 @@ paths:
           schema:
             type: string
         -
-          name: dateToDestroy
+          name: dateToArchive
           in: query
           required: false
           schema:
@@ -3248,6 +3248,15 @@ paths:
               - desc
         -
           name: 'order[methods]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[qrConfig]'
           in: query
           required: false
           schema:
@@ -4548,8 +4557,8 @@ components:
           type: string
           format: date-time
           nullable: true
-        dateToDestroy:
-          description: 'The moment this object will be destroyed'
+        dateToArchive:
+          description: 'The moment this object will be archived'
           type: string
           format: date-time
           nullable: true
@@ -4631,8 +4640,8 @@ components:
           type: string
           format: date-time
           nullable: true
-        dateToDestroy:
-          description: 'The moment this object will be destroyed'
+        dateToArchive:
+          description: 'The moment this object will be archived'
           type: string
           format: date-time
           nullable: true
@@ -4719,6 +4728,12 @@ components:
           type: string
           nullable: true
         methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
           type: array
           items:
             type: string
@@ -4765,6 +4780,12 @@ components:
           type: string
           nullable: true
         methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
           type: array
           items:
             type: string
@@ -4819,6 +4840,12 @@ components:
           type: string
           nullable: true
         methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
           type: array
           items:
             type: string
@@ -4874,6 +4901,12 @@ components:
           type: string
           nullable: true
         methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
           type: array
           items:
             type: string
@@ -4907,8 +4940,8 @@ definitions:
         description: 'The moment this check-in ended by leaving the node'
         type: \DateTime
         example: '20190101'
-      dateToDestroy:
-        description: 'The moment this object will be destroyed'
+      dateToArchive:
+        description: 'The moment this object will be archived'
         type: \DateTime
         example: '20190101'
       dateCreated:
@@ -4980,7 +5013,11 @@ definitions:
         type: string
         example: 'https://example.org/succesful-checkin'
         format: url
-      methods: []
+      methods:
+        description: 'the authentication methods this node supports'
+        type: array
+        example: 'Idin, Gmail, Facebook'
+      qrConfig: []
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -5019,7 +5056,11 @@ definitions:
         type: string
         example: 'https://example.org/succesful-checkin'
         format: url
-      methods: []
+      methods:
+        description: 'the authentication methods this node supports'
+        type: array
+        example: 'Idin, Gmail, Facebook'
+      qrConfig: []
     required:
       - place
       - organization
@@ -5061,12 +5102,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 12:26:14'
+        example: '2020-09-16 11:57:55'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 12:26:14'
+        example: '2020-09-16 11:57:55'
     required: []
   ChangeLog-write:
     properties:
@@ -5180,12 +5221,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 12:26:14'
+        example: '2020-09-16 11:57:55'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 12:26:14'
+        example: '2020-09-16 11:57:55'
     required: []
   AuditTrail-write:
     properties:

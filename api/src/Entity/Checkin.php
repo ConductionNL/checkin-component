@@ -140,8 +140,8 @@ class Checkin
      */
     private $dateCheckedOut;
 
-     * @var DateTime The moment this object will be archived
     /**
+    * @var DateTime The moment this object will be archived
      *
      * @example 20190101
      *
@@ -178,7 +178,7 @@ class Checkin
         return $this->dateToArchive;
     }
 
-    public function setDateArchive(DateTimeInterface $dateToArchive): self
+    public function setDateToArchive(DateTimeInterface $dateToArchive): self
     {
         $this->dateToArchive = $dateToArchive;
 
@@ -208,7 +208,6 @@ class Checkin
     public function createDateToArchive()
     {
         $date = new DateTime('today');
-        $date->add(new DateInterval('P14D'));
 
         $this->setDateToArchive($date);
     }
@@ -283,11 +282,6 @@ class Checkin
         $this->dateCheckedOut = $dateCheckedOut;
 
         return $this;
-    }
-
-    public function getDateToDestory(): ?DateTimeInterface
-    {
-        return $this->dateToDestory;
     }
 
     public function getDateCreated(): ?DateTimeInterface
