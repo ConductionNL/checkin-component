@@ -130,7 +130,18 @@ class Checkin
     private $userUrl;
 
     /**
+     * @var DateTime The moment this check-in ended by leaving the node
+     *
+     * @example 20190101
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCheckedOut;
+
      * @var DateTime The moment this object will be archived
+    /**
      *
      * @example 20190101
      *
@@ -260,6 +271,23 @@ class Checkin
         $this->userUrl = $userUrl;
 
         return $this;
+    }
+
+    public function getDateCheckedOut(): ?DateTimeInterface
+    {
+        return $this->dateCheckedOut;
+    }
+
+    public function setDateCheckedOut(DateTimeInterface $dateCheckedOut): self
+    {
+        $this->dateCheckedOut = $dateCheckedOut;
+
+        return $this;
+    }
+
+    public function getDateToDestory(): ?DateTimeInterface
+    {
+        return $this->dateToDestory;
     }
 
     public function getDateCreated(): ?DateTimeInterface

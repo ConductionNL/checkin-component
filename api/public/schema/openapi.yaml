@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/chin-php) 
     - Datamodel: [postman](/schema/chin.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /audit_trails:
@@ -2065,6 +2065,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[dateCheckedOut]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateToArchive]'
           in: query
           required: false
@@ -2092,7 +2101,31 @@ paths:
               - asc
               - desc
         -
-          name: 'dateToArchive[before]'
+          name: 'dateCheckedOut[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateToDestroy[before]'
           in: query
           required: false
           schema:
@@ -2228,7 +2261,19 @@ paths:
           style: form
           explode: true
         -
-          name: dateToArchive
+          name: dateCheckedOut
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dateToDestroy
           in: query
           required: false
           schema:
@@ -3194,6 +3239,15 @@ paths:
               - desc
         -
           name: 'order[passthroughUrl]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[methods]'
           in: query
           required: false
           schema:
@@ -4489,9 +4543,13 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
-        dateToArchive:
-          readOnly: true
-          description: 'The moment this object will be archived'
+        dateCheckedOut:
+          description: 'The moment this check-in ended by leaving the node'
+          type: string
+          format: date-time
+          nullable: true
+        dateToDestroy:
+          description: 'The moment this object will be destroyed'
           type: string
           format: date-time
           nullable: true
@@ -4568,9 +4626,13 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
-        dateToArchive:
-          readOnly: true
-          description: 'The moment this object will be archived'
+        dateCheckedOut:
+          description: 'The moment this check-in ended by leaving the node'
+          type: string
+          format: date-time
+          nullable: true
+        dateToDestroy:
+          description: 'The moment this object will be destroyed'
           type: string
           format: date-time
           nullable: true
@@ -4656,6 +4718,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        methods:
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4698,6 +4764,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        methods:
+          type: array
+          items:
+            type: string
       required:
         - place
         - organization
@@ -4748,6 +4818,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        methods:
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4799,6 +4873,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        methods:
+          type: array
+          items:
+            type: string
       required:
         - place
         - organization
@@ -4825,8 +4903,12 @@ definitions:
         type: string
         example: 'https://example.org/users/1'
         format: url
-      dateToArchive:
-        description: 'The moment this object will be archived'
+      dateCheckedOut:
+        description: 'The moment this check-in ended by leaving the node'
+        type: \DateTime
+        example: '20190101'
+      dateToDestroy:
+        description: 'The moment this object will be destroyed'
         type: \DateTime
         example: '20190101'
       dateCreated:
@@ -4898,6 +4980,7 @@ definitions:
         type: string
         example: 'https://example.org/succesful-checkin'
         format: url
+      methods: []
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -4936,9 +5019,63 @@ definitions:
         type: string
         example: 'https://example.org/succesful-checkin'
         format: url
+      methods: []
     required:
       - place
       - organization
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-15 12:26:14'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-15 12:26:14'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -5043,12 +5180,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-15 10:14:28'
+        example: '2020-09-15 12:26:14'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-15 10:14:28'
+        example: '2020-09-15 12:26:14'
     required: []
   AuditTrail-write:
     properties:
@@ -5056,59 +5193,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-15 10:14:28'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-15 10:14:28'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -5125,13 +5209,13 @@ tags:
       
       A node being a point where users can check in as part of a place
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -5142,15 +5226,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -

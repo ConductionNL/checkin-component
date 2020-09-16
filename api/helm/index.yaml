@@ -3,14 +3,14 @@ entries:
   chin:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-09-15T10:13:24.9073505Z"
-    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
-      beschikbaar.
-    digest: b6739b21d5653feed5d9e6fd77ee4a2b0b538b1a9b52e9e6b6ba668d76d8957b
+    created: "2020-09-15T12:25:03.5347295Z"
+    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
+      interface beschikbaar.&#039;'
+    digest: 4d1785d60b58dda2d4912d85b7f08c4abd97252e1cc1ec30cbda0466ec7322aa
     home: chin.zzuid-drecht.nl
     icon: chin.zuid-drecht.nl
     name: chin
     urls:
     - chin-0.1.0.tgz
     version: 0.1.0
-generated: "2020-09-15T10:13:24.9023352Z"
+generated: "2020-09-15T12:25:03.5255101Z"
