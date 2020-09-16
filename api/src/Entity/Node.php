@@ -177,7 +177,7 @@ class Node
     private $methods = [];
 
     /**
-     * The QR code options for this node as defined by endroid/qr-code-bundle
+     * The QR code options for this node as defined by endroid/qr-code-bundle.
      *
      * @Gedmo\Versioned
      * @Groups({"read","write"})
