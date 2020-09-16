@@ -166,6 +166,10 @@ class Node
     private $checkins;
 
     /**
+     * @var array the authentication methods this node supports
+     *
+     * @example Idin, Gmail, Facebook
+     *
      * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="json")
@@ -173,7 +177,7 @@ class Node
     private $methods = [];
 
     /**
-     * The QR code options for this node as defined by endroid/qr-code-bundle
+     * The QR code options for this node as defined by endroid/qr-code-bundle.
      *
      * @Gedmo\Versioned
      * @Groups({"read","write"})
