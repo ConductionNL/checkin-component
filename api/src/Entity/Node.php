@@ -166,6 +166,10 @@ class Node
     private $checkins;
 
     /**
+     * @var array the authentication methods this node supports
+     *
+     * @example Idin, Gmail, Facebook
+     *
      * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="json")
