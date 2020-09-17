@@ -166,11 +166,24 @@ class Node
     private $checkins;
 
     /**
+     * @var array the authentication methods this node supports
+     *
+     * @example Idin, Gmail, Facebook
+     *
      * @Gedmo\Versioned
      * @Groups({"read","write"})
      * @ORM\Column(type="json")
      */
     private $methods = [];
+
+    /**
+     * The QR code options for this node as defined by endroid/qr-code-bundle.
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json")
+     */
+    private $qrConfig = [];
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -339,6 +352,18 @@ class Node
     public function setMethods(array $methods): self
     {
         $this->methods = $methods;
+
+        return $this;
+    }
+
+    public function getQrConfig(): ?array
+    {
+        return $this->qrConfig;
+    }
+
+    public function setQrConfig(array $qrConfig): self
+    {
+        $this->qrConfig = $qrConfig;
 
         return $this;
     }

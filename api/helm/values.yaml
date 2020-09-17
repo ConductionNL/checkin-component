@@ -8,6 +8,7 @@ settings:
   name: chin
   title: Check in component
   version: V.0.1
+  majorVersion: v1
   id: 
   description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
   type: component
@@ -16,6 +17,8 @@ settings:
   container: https://hub.docker.com/repository/docker/conduction/chin-php
   domain: zuid-drecht.nl
   subdomain: chin
+  subpath: chin
+  subpathRouting: true
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands

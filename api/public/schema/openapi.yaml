@@ -2065,6 +2065,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[dateCheckedOut]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateToDestroy]'
           in: query
           required: false
@@ -2091,6 +2100,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'dateCheckedOut[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateToDestroy[before]'
           in: query
@@ -2227,6 +2260,18 @@ paths:
               type: string
           style: form
           explode: true
+        -
+          name: dateCheckedOut
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCheckedOut[]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: dateToDestroy
           in: query
@@ -3193,6 +3238,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[passthroughUrl]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[methods]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[qrConfig]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -3260,6 +3332,24 @@ paths:
             type: string
         -
           name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: organization
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: description
           in: query
           required: false
           schema:
@@ -4461,6 +4551,11 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        dateCheckedOut:
+          description: 'The moment this check-in ended by leaving the node'
+          type: string
+          format: date-time
+          nullable: true
         dateToDestroy:
           description: 'The moment this object will be destroyed'
           type: string
@@ -4536,6 +4631,11 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
+        dateCheckedOut:
+          description: 'The moment this check-in ended by leaving the node'
+          type: string
+          format: date-time
           nullable: true
         dateToDestroy:
           description: 'The moment this object will be destroyed'
@@ -4617,6 +4717,22 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4653,6 +4769,22 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
+          type: array
+          items:
+            type: string
       required:
         - place
         - organization
@@ -4697,6 +4829,22 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -4742,6 +4890,22 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        passthroughUrl:
+          description: 'The url to a page of the organization of this node'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        methods:
+          description: 'the authentication methods this node supports'
+          type: array
+          items:
+            type: string
+        qrConfig:
+          description: 'The QR code options for this node as defined by endroid/qr-code-bundle.'
+          type: array
+          items:
+            type: string
       required:
         - place
         - organization
@@ -4768,6 +4932,10 @@ definitions:
         type: string
         example: 'https://example.org/users/1'
         format: url
+      dateCheckedOut:
+        description: 'The moment this check-in ended by leaving the node'
+        type: \DateTime
+        example: '20190101'
       dateToDestroy:
         description: 'The moment this object will be destroyed'
         type: \DateTime
@@ -4836,6 +5004,16 @@ definitions:
         type: string
         example: 'https://example.org/organizations/1'
         format: url
+      passthroughUrl:
+        description: 'The url to a page of the organization of this node'
+        type: string
+        example: 'https://example.org/succesful-checkin'
+        format: url
+      methods:
+        description: 'the authentication methods this node supports'
+        type: array
+        example: 'Idin, Gmail, Facebook'
+      qrConfig: []
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -4869,6 +5047,16 @@ definitions:
         type: string
         example: 'https://example.org/organizations/1'
         format: url
+      passthroughUrl:
+        description: 'The url to a page of the organization of this node'
+        type: string
+        example: 'https://example.org/succesful-checkin'
+        format: url
+      methods:
+        description: 'the authentication methods this node supports'
+        type: array
+        example: 'Idin, Gmail, Facebook'
+      qrConfig: []
     required:
       - place
       - organization
@@ -4976,12 +5164,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-17 11:47:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-17 11:47:43'
     required: []
   AuditTrail-write:
     properties:
@@ -5029,12 +5217,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-17 11:47:43'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 11:10:39'
+        example: '2020-09-17 11:47:43'
     required: []
   ChangeLog-write:
     properties:

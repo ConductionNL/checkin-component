@@ -85,9 +85,47 @@ class CheckinFixtures extends Fixture
         $node->setReference('I2K-HTI');
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'f5b473e9-a2d8-4383-b268-265c340f4bc5']));
-        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'f302b75e-a233-4ddf-95b5-f8603f2e80e9']));
         $manager->persist($node);
         $manager->flush();
+
+        $node = new Node();
+        $node->setName('Mc Donalds Zuid-Drecht');
+        $node->setReference('KE8-07I');
+        $node->setDescription('Mc Donalds Zuid-Drecht');
+        $node->setPassthroughUrl('https://www.mcdonalds.com/nl/nl-nl.html');
+        $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'fe5d966c-8999-4df5-9679-a0a8fad6f8c8']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'e3137e4f-e44d-4400-adbd-0fa1b4be9d65']));
+        $manager->persist($node);
+        $manager->flush();
+
+        $node = new Node();
+        $node->setName('Emmalaan 7');
+        $node->setReference('9NV-JYR');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+        ]);
+        $node->setDescription('Emmalaan 7');
+        $node->setReference('9NV-JYR');
+        //$node->setPassthroughUrl('https://creativegrounds.com/');
+        $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'75a116e3-0e9b-4ca7-ae3b-190a70d519a7']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $manager->persist($node);
+        $manager->flush();
+
+        $node = new Node();
+        $node->setName('Emmalaan 9');
+        $node->setDescription('Emmalaan 9');
+        $node->setReference('7U1-Y80');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+        ]);
+        //$node->setPassthroughUrl('https://creativegr ounds.com/');
+        $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'75a116e3-0e9b-4ca7-ae3b-190a70d519a7']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $manager->persist($node);
 
         $manager->flush();
     }
