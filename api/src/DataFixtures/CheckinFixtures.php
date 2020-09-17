@@ -113,6 +113,10 @@ class CheckinFixtures extends Fixture
         $node->setName('Emmalaan 9');
         $node->setDescription('Emmalaan 9');
         $node->setReference('7U1-Y80');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+        ]);
         //$node->setPassthroughUrl('https://creativegr ounds.com/');
         $node->setPlace($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'places', 'id'=>'75a116e3-0e9b-4ca7-ae3b-190a70d519a7']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
