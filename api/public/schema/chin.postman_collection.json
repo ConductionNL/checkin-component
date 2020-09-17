@@ -1853,19 +1853,19 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Tafel 2\",\n    \"description\": \"Tafel 2\",\n    \"reference\": \"LQ0-579\",\n    \"place\": \"https://lc.dev.zuid-drecht.nl/places\",\n    \"organization\": \"https://wrc.dev.zuid-drecht.nl/organizations\"\n}",
+							"raw": "{\n    \"reference\": \"1RI-L7E\",\n    \"node\": \"/nodes/{{node}}\",\n    \"person\": \"https://cc.dev.zuid-drecht.nl/people\"\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/nodes/{{node}}",
+							"raw": "{{baseUrl}}/checkins/{{checkin}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"nodes",
-								"{{node}}"
+								"checkins",
+								"{{checkin}}"
 							]
 						}
 					},
@@ -2156,12 +2156,12 @@
 	],
 	"variable": [
 		{
-			"id": "060a6423-1455-415e-85dd-3d2d261344ad",
+			"id": "91935c23-b9af-4441-bedc-7d9781b17361",
 			"key": "baseUrl",
 			"value": "https://chin.dev.zuid-drecht.nl"
 		},
 		{
-			"id": "d0a58d3d-1cc3-4fad-973b-f727104f5b8f",
+			"id": "eeba04ea-8128-476b-b233-c4ae05609e1d",
 			"key": "Authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
