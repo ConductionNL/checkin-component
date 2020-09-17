@@ -101,6 +101,11 @@ class CheckinFixtures extends Fixture
 
         $node = new Node();
         $node->setName('Emmalaan 7');
+        $node->setReference('9NV-JYR');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+        ]);
         $node->setDescription('Emmalaan 7');
         $node->setReference('9NV-JYR');
         //$node->setPassthroughUrl('https://creativegrounds.com/');
