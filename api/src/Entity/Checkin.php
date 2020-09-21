@@ -134,8 +134,7 @@ class Checkin
      *
      * @example 20190101
      *
-     * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCheckedOut;
