@@ -2156,12 +2156,12 @@
 	],
 	"variable": [
 		{
-			"id": "21f900dd-a38a-48af-96c4-87d4ab7848dc",
+			"id": "a69b3135-944b-4f8d-b4d8-37f21f09003c",
 			"key": "baseUrl",
-			"value": "https://chin.dev.zuid-drecht.nl"
+			"value": "localhost"
 		},
 		{
-			"id": "1a32d59a-af81-4dc8-89f7-129253b7967b",
+			"id": "eef64afa-b89d-45c5-9e9f-671ad5ffebfd",
 			"key": "Authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
