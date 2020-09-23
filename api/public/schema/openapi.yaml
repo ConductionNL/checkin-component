@@ -2038,15 +2038,6 @@ paths:
               - asc
               - desc
         -
-          name: 'order[reference]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
           name: 'order[person]'
           in: query
           required: false
@@ -2197,37 +2188,11 @@ paths:
           schema:
             type: string
         -
-          name: id
+          name: node.organization
           in: query
           required: false
           schema:
             type: string
-        -
-          name: 'id[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: reference
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'reference[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
         -
           name: person
           in: query
@@ -2235,75 +2200,7 @@ paths:
           schema:
             type: string
         -
-          name: 'person[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
           name: userUrl
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'userUrl[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: dateCheckedOut
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCheckedOut[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateToDestroy
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateToDestroy[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateCreated
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateCreated[]'
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: dateModified
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'dateModified[]'
           in: query
           required: false
           schema:
@@ -4227,6 +4124,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[type]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[name]'
           in: query
           required: false
@@ -4245,7 +4151,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[place]'
+          name: 'order[accommodation]'
           in: query
           required: false
           schema:
@@ -5571,9 +5477,6 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        reference:
-          description: 'The human readable id for this node'
-          type: string
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node-read'
@@ -5657,9 +5560,6 @@ components:
             url: 'http://schema.org/identifier'
           type: string
           format: uuid
-        reference:
-          description: 'The human readable id for this node'
-          type: string
         node:
           description: 'The node where this checkin takes place'
           $ref: '#/components/schemas/Node:jsonld-read'
@@ -5868,6 +5768,9 @@ components:
         reference:
           description: 'The human readable id for this node'
           type: string
+        type:
+          description: 'The type of this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -5876,8 +5779,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        place:
-          description: 'The place of this node'
+        accommodation:
+          description: 'The Accommodation of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -5914,12 +5817,15 @@ components:
           format: date-time
           nullable: true
       required:
-        - place
+        - accommodation
         - organization
     Node-write:
       type: object
       description: 'An entity representing an node.'
       properties:
+        type:
+          description: 'The type of this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -5928,8 +5834,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        place:
-          description: 'The place of this node'
+        accommodation:
+          description: 'The Accommodation of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -5955,7 +5861,7 @@ components:
           items:
             type: string
       required:
-        - place
+        - accommodation
         - organization
     'Node:jsonld-read':
       type: object
@@ -5980,6 +5886,9 @@ components:
         reference:
           description: 'The human readable id for this node'
           type: string
+        type:
+          description: 'The type of this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -5988,8 +5897,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        place:
-          description: 'The place of this node'
+        accommodation:
+          description: 'The Accommodation of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -6026,7 +5935,7 @@ components:
           format: date-time
           nullable: true
       required:
-        - place
+        - accommodation
         - organization
     'Node:jsonld-write':
       type: object
@@ -6041,6 +5950,9 @@ components:
         '@type':
           readOnly: true
           type: string
+        type:
+          description: 'The type of this node'
+          type: string
         name:
           description: 'The name of the invoice'
           type: string
@@ -6049,8 +5961,8 @@ components:
           description: 'The description of the invoice'
           type: string
           nullable: true
-        place:
-          description: 'The place of this node'
+        accommodation:
+          description: 'The Accommodation of this node'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -6076,7 +5988,7 @@ components:
           items:
             type: string
       required:
-        - place
+        - accommodation
         - organization
 definitions:
   Checkin-read:
@@ -6086,11 +5998,6 @@ definitions:
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      reference:
-        description: 'The human readable id for this node'
-        type: string
-        example: Q32-AD8
-        maxLength: 255
       person:
         description: 'The contact details of this checkin'
         type: string
@@ -6157,6 +6064,11 @@ definitions:
         type: string
         example: Q32-AD8
         maxLength: 255
+      type:
+        description: 'The type of this node'
+        type: string
+        example: checkin
+        maxLength: 255
       name:
         description: 'The name of the invoice'
         type: string
@@ -6167,10 +6079,10 @@ definitions:
         type: string
         example: 'This is the best invoice ever'
         maxLength: 255
-      place:
-        description: 'The place of this node'
+      accommodation:
+        description: 'The Accommodation of this node'
         type: string
-        example: 'https://example.org/places/1'
+        example: 'https://example.org/accomodations/1'
         format: url
       organization:
         description: 'The organization that ownes this node'
@@ -6196,10 +6108,15 @@ definitions:
         type: \DateTime
         example: '20190101'
     required:
-      - place
+      - accommodation
       - organization
   Node-write:
     properties:
+      type:
+        description: 'The type of this node'
+        type: string
+        example: checkin
+        maxLength: 255
       name:
         description: 'The name of the invoice'
         type: string
@@ -6210,10 +6127,10 @@ definitions:
         type: string
         example: 'This is the best invoice ever'
         maxLength: 255
-      place:
-        description: 'The place of this node'
+      accommodation:
+        description: 'The Accommodation of this node'
         type: string
-        example: 'https://example.org/places/1'
+        example: 'https://example.org/accomodations/1'
         format: url
       organization:
         description: 'The organization that ownes this node'
@@ -6231,8 +6148,61 @@ definitions:
         example: 'Idin, Gmail, Facebook'
       qrConfig: []
     required:
-      - place
+      - accommodation
       - organization
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-23 09:36:17'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-23 09:36:17'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -6337,12 +6307,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-21 15:42:14'
+        example: '2020-09-23 09:36:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-21 15:42:14'
+        example: '2020-09-23 09:36:17'
     required: []
   AuditTrail-write:
     properties:
@@ -6350,59 +6320,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-21 15:42:14'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-21 15:42:14'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
   LoginLog-read:
@@ -6474,13 +6391,13 @@ tags:
       
       A node being a point where users can check in as part of a place
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
