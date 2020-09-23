@@ -63,7 +63,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
- * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","node.organization": "partial","person": "partial","userUrl": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={"node.organization": "partial","person": "partial","userUrl": "partial"})
  */
 class Checkin
 {
@@ -177,16 +177,6 @@ class Checkin
      *  */
     public function prePersist()
     {
-        // If no reference has been provided we want to make one
-        if (!$this->getReference()) {
-            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-
-            $reference = $part1.'-'.$part2;
-            $this->setReference($reference);
-        }
-
         $this->createDateToDestory();
     }
 

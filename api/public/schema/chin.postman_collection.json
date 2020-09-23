@@ -192,7 +192,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Tafel 1\",\n    \"description\": \"Tafel 1\",\n    \"reference\": \"LQ0-578\",\n    \"place\": \"https://lc.dev.zuid-drecht.nl/places\",\n    \"organization\": \"https://wrc.dev.zuid-drecht.nl/organizations\"\n}",
+							"raw": "{\n    \"name\": \"Tafel 1\",\n    \"description\": \"Tafel 1\",\n    \"reference\": \"LQ0-578\",\n    \"accommodation\": \"https://lc.dev.zuid-drecht.nl/accomodation\",\n    \"organization\": \"https://wrc.dev.zuid-drecht.nl/organizations\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -798,7 +798,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Tafel 2\",\n    \"description\": \"Tafel 2\",\n    \"reference\": \"LQ0-579\",\n    \"place\": \"https://lc.dev.zuid-drecht.nl/places\",\n    \"organization\": \"https://wrc.dev.zuid-drecht.nl/organizations\"\n}",
+							"raw": "{\n    \"name\": \"Tafel 2\",\n    \"description\": \"Tafel 2\",\n    \"reference\": \"LQ0-579\",\n    \"accommodation\": \"https://lc.dev.zuid-drecht.nl/places\",\n    \"organization\": \"https://wrc.dev.zuid-drecht.nl/organizations\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -1149,12 +1149,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/nodes",
+							"raw": "{{baseUrl}}/checkins",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"nodes"
+								"checkins"
 							]
 						}
 					},
@@ -1247,7 +1247,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"reference\": \"1RI-L7D\",\n    \"node\": \"/nodes/{{node}}\",\n    \"person\": \"https://cc.dev.zuid-drecht.nl/people\"\n}",
+							"raw": "{\n    \"node\": \"/nodes/{{node}}\",\n    \"person\": \"https://cc.dev.zuid-drecht.nl/people\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -1571,13 +1571,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/nodes/{{node}}",
+							"raw": "{{baseUrl}}/checkins/{{checkin}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"nodes",
-								"{{node}}"
+								"checkins",
+								"{{checkin}}"
 							]
 						}
 					},
@@ -2156,12 +2156,12 @@
 	],
 	"variable": [
 		{
-			"id": "91935c23-b9af-4441-bedc-7d9781b17361",
+			"id": "21f900dd-a38a-48af-96c4-87d4ab7848dc",
 			"key": "baseUrl",
 			"value": "https://chin.dev.zuid-drecht.nl"
 		},
 		{
-			"id": "eeba04ea-8128-476b-b233-c4ae05609e1d",
+			"id": "1a32d59a-af81-4dc8-89f7-129253b7967b",
 			"key": "Authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
