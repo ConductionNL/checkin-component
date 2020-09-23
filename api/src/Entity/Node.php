@@ -142,16 +142,16 @@ class Node
     private $description;
 
     /**
-     * @var string The place of this node
+     * @var string The Accommodation of this node
      *
-     * @example https://example.org/places/1
+     * @example https://example.org/accomodations/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $place;
+    private $accommodation;
 
     /**
      * @var string The organization that ownes this node
@@ -305,14 +305,14 @@ class Node
         return $this;
     }
 
-    public function getPlace(): ?string
+    public function getAccommodation(): ?string
     {
-        return $this->place;
+        return $this->accommodation;
     }
 
-    public function setPlace(string $place): self
+    public function setAccommodation(string $accommodation): self
     {
-        $this->place = $place;
+        $this->accommodation = $accommodation;
 
         return $this;
     }
