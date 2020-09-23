@@ -64,6 +64,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","node.organization": "partial","person": "partial","userUrl": "partial"})
  */
 class Checkin
 {
@@ -81,20 +82,6 @@ class Checkin
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
-    /**
-     * @var string The human readable id for this node
-     *
-     * @Gedmo\Versioned
-     *
-     * @example Q32-AD8
-     * @Groups({"read"})
-     * @Assert\Length(
-     *     max=255
-     * )
-     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
-     */
-    private $reference;
 
     /**
      * @var Node The node where this checkin takes place
@@ -220,18 +207,6 @@ class Checkin
     public function setId(string $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
 
         return $this;
     }
