@@ -98,6 +98,22 @@ class Node
     private $reference;
 
     /**
+     * @var string The type of this node
+     *
+     * @example checkin
+     *
+     * @Gedmo\Versioned
+     * @Assert\Choice({"checkin", "reservation"})
+     * @Assert\Length(
+     *      max = 255
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=12)
+     */
+    private $type = 'checkin';
+
+    /**
      * @var string The name of the invoice
      *
      * @Gedmo\Versioned
@@ -249,6 +265,18 @@ class Node
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
