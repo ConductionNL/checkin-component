@@ -123,7 +123,7 @@ class CheckinFixtures extends Fixture
             'google'    => true,
         ]);
         //$node->setPassthroughUrl('https://creativegr ounds.com/');
-        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'a656d7c1-0313-4fd6-aba1-a12a4bcc812a']));
+        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'ee032543-1828-4e45-b08d-13b4581458ef']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
         $manager->persist($node);
 
