@@ -59,11 +59,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=App\Repository\CheckinRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="checkin_reference", columns={"reference"})})
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"node.organization": "partial","person": "partial","userUrl": "partial"})
  */
 class Checkin
 {
@@ -81,20 +81,6 @@ class Checkin
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
-
-    /**
-     * @var string The human readable id for this node
-     *
-     * @Gedmo\Versioned
-     *
-     * @example Q32-AD8
-     * @Groups({"read"})
-     * @Assert\Length(
-     *     max=255
-     * )
-     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
-     */
-    private $reference;
 
     /**
      * @var Node The node where this checkin takes place
@@ -191,16 +177,6 @@ class Checkin
      *  */
     public function prePersist()
     {
-        // If no reference has been provided we want to make one
-        if (!$this->getReference()) {
-            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-
-            $reference = $part1.'-'.$part2;
-            $this->setReference($reference);
-        }
-
         $this->createDateToDestory();
     }
 
@@ -220,18 +196,6 @@ class Checkin
     public function setId(string $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
 
         return $this;
     }

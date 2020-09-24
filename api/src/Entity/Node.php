@@ -64,7 +64,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","organization": "iexact","name": "iexact","description": "iexact"})
+ * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","organization": "partial","name": "partial","description": "partial"})
  */
 class Node
 {
@@ -98,6 +98,22 @@ class Node
     private $reference;
 
     /**
+     * @var string The type of this node
+     *
+     * @example checkin
+     *
+     * @Gedmo\Versioned
+     * @Assert\Choice({"checkin", "reservation"})
+     * @Assert\Length(
+     *      max = 255
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=12)
+     */
+    private $type = 'checkin';
+
+    /**
      * @var string The name of the invoice
      *
      * @Gedmo\Versioned
@@ -126,16 +142,16 @@ class Node
     private $description;
 
     /**
-     * @var string The place of this node
+     * @var string The Accommodation of this node
      *
-     * @example https://example.org/places/1
+     * @example https://example.org/accomodations/1
      *
      * @Groups({"read","write"})
      * @Assert\Url
      * @Assert\NotNull
      * @ORM\Column(type="string", length=255)
      */
-    private $place;
+    private $accommodation;
 
     /**
      * @var string The organization that ownes this node
@@ -253,6 +269,18 @@ class Node
         return $this;
     }
 
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -277,14 +305,14 @@ class Node
         return $this;
     }
 
-    public function getPlace(): ?string
+    public function getAccommodation(): ?string
     {
-        return $this->place;
+        return $this->accommodation;
     }
 
-    public function setPlace(string $place): self
+    public function setAccommodation(string $accommodation): self
     {
-        $this->place = $place;
+        $this->accommodation = $accommodation;
 
         return $this;
     }
