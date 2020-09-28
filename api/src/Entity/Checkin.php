@@ -87,7 +87,7 @@ class Checkin
      *
      * @Groups({"read","write"})
      * @Assert\NotNull
-     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins")
+     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $node;
