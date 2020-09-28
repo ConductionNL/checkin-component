@@ -116,6 +116,22 @@ class Checkin
     private $userUrl;
 
     /**
+     * @var string The provider used to register this checkin.
+     *
+     * @example incomplete
+     *
+     * @Gedmo\Versioned
+     * @Assert\Choice({"session", "facebook", "gmail", "email", "idin-login", "idin-iden", "github", "irma"})
+     * @Assert\Length(
+     *      max = 15
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $provider = 'provider';
+
+    /**
      * @var DateTime The moment this check-in ended by leaving the node
      *
      * @example 20190101
@@ -232,6 +248,18 @@ class Checkin
     public function setUserUrl(string $userUrl): self
     {
         $this->userUrl = $userUrl;
+
+        return $this;
+    }
+
+    public function getProvider(): ?string
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(string $provider): self
+    {
+        $this->provider = $provider;
 
         return $this;
     }
