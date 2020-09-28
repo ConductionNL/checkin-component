@@ -118,10 +118,9 @@ class Checkin
     /**
      * @var string The provider used to register this checkin.
      *
-     * @example incomplete
+     * @example session
      *
      * @Gedmo\Versioned
-     * @Assert\Choice({"session", "facebook", "gmail", "email", "idin-login", "idin-identity", "github", "irma"})
      * @Assert\Length(
      *      max = 15
      * )
@@ -129,7 +128,7 @@ class Checkin
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=15, nullable=true)
      */
-    private $provider = 'provider';
+    private $provider = 'session';
 
     /**
      * @var DateTime The moment this check-in ended by leaving the node
