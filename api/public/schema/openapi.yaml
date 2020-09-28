@@ -2056,6 +2056,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[provider]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCheckedOut]'
           in: query
           required: false
@@ -5491,6 +5500,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        provider:
+          description: 'The provider used to register this checkin.'
+          type: string
+          nullable: true
         dateCheckedOut:
           description: 'The moment this check-in ended by leaving the node'
           type: string
@@ -5535,6 +5548,10 @@ components:
             url: 'http://schema.org/url'
           type: string
           nullable: true
+        provider:
+          description: 'The provider used to register this checkin.'
+          type: string
+          nullable: true
         dateCheckedOut:
           description: 'The moment this check-in ended by leaving the node'
           type: string
@@ -5572,6 +5589,10 @@ components:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider used to register this checkin.'
           type: string
           nullable: true
         dateCheckedOut:
@@ -5625,6 +5646,10 @@ components:
           description: 'The user that dit the check'
           externalDocs:
             url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        provider:
+          description: 'The provider used to register this checkin.'
           type: string
           nullable: true
         dateCheckedOut:
@@ -6008,6 +6033,11 @@ definitions:
         type: string
         example: 'https://example.org/users/1'
         format: url
+      provider:
+        description: 'The provider used to register this checkin.'
+        type: string
+        example: incomplete
+        maxLength: 15
       dateCheckedOut:
         description: 'The moment this check-in ended by leaving the node'
         type: \DateTime
@@ -6042,6 +6072,11 @@ definitions:
         type: string
         example: 'https://example.org/users/1'
         format: url
+      provider:
+        description: 'The provider used to register this checkin.'
+        type: string
+        example: incomplete
+        maxLength: 15
       dateCheckedOut:
         description: 'The moment this check-in ended by leaving the node'
         type: \DateTime
@@ -6150,59 +6185,6 @@ definitions:
     required:
       - accommodation
       - organization
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-23 09:36:17'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-23 09:36:17'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -6307,12 +6289,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-23 09:36:17'
+        example: '2020-09-28 13:40:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-23 09:36:17'
+        example: '2020-09-28 13:40:35'
     required: []
   AuditTrail-write:
     properties:
@@ -6320,6 +6302,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-28 13:40:35'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-28 13:40:35'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
   LoginLog-read:
@@ -6391,13 +6426,13 @@ tags:
       
       A node being a point where users can check in as part of a place
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       

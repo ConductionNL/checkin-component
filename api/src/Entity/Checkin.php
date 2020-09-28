@@ -87,7 +87,7 @@ class Checkin
      *
      * @Groups({"read","write"})
      * @Assert\NotNull
-     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins")
+     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $node;
@@ -121,7 +121,7 @@ class Checkin
      * @example incomplete
      *
      * @Gedmo\Versioned
-     * @Assert\Choice({"session", "facebook", "gmail", "email", "idin-login", "idin-iden", "github", "irma"})
+     * @Assert\Choice({"session", "facebook", "gmail", "email", "idin-login", "idin-identity", "github", "irma"})
      * @Assert\Length(
      *      max = 15
      * )
