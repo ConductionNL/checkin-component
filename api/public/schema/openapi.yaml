@@ -2203,6 +2203,12 @@ paths:
           schema:
             type: string
         -
+          name: node.accommodation
+          in: query
+          required: false
+          schema:
+            type: string
+        -
           name: person
           in: query
           required: false
@@ -6036,7 +6042,7 @@ definitions:
       provider:
         description: 'The provider used to register this checkin.'
         type: string
-        example: incomplete
+        example: session
         maxLength: 15
       dateCheckedOut:
         description: 'The moment this check-in ended by leaving the node'
@@ -6075,7 +6081,7 @@ definitions:
       provider:
         description: 'The provider used to register this checkin.'
         type: string
-        example: incomplete
+        example: session
         maxLength: 15
       dateCheckedOut:
         description: 'The moment this check-in ended by leaving the node'
@@ -6289,12 +6295,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-28 13:40:35'
+        example: '2020-09-29 09:37:30'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-28 13:40:35'
+        example: '2020-09-29 09:37:30'
     required: []
   AuditTrail-write:
     properties:
@@ -6342,12 +6348,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-28 13:40:35'
+        example: '2020-09-29 09:37:30'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-28 13:40:35'
+        example: '2020-09-29 09:37:30'
     required: []
   ChangeLog-write:
     properties:
