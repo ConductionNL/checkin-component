@@ -34,6 +34,11 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LQ0-578');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+            'idin'      => true,
+        ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'75f36e60-c798-41bb-ae11-4bc4e23aa147']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
@@ -44,6 +49,11 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('TH6-7BS');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+            'idin'      => true,
+        ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'014016d0-292e-4373-8bd2-4a0e427ac059']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
