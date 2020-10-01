@@ -35,8 +35,6 @@ class CheckinFixtures extends Fixture
         $node->setDescription('Tafel 1');
         $node->setReference('LQ0-578');
         $node->setMethods([
-            'facebook'  => true,
-            'google'    => true,
             'idin'      => true,
         ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
@@ -50,8 +48,6 @@ class CheckinFixtures extends Fixture
         $node->setDescription('Tafel 2');
         $node->setReference('TH6-7BS');
         $node->setMethods([
-            'facebook'  => true,
-            'google'    => true,
             'idin'      => true,
         ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
@@ -65,8 +61,6 @@ class CheckinFixtures extends Fixture
         $node->setDescription('Bar');
         $node->setReference('ROW-OJ8');
         $node->setMethods([
-            'facebook'  => true,
-            'google'    => true,
             'idin'      => true,
         ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
