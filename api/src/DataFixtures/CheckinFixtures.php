@@ -64,7 +64,7 @@ class CheckinFixtures extends Fixture
             'idin'      => true,
         ]);
         $node->setPassthroughUrl('https://zuid-drecht.nl');
-        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'51c8a9f-f7cf-4f45-9c16-72ed74d4eba1']));
+        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'751c8a9f-f7cf-4f45-9c16-72ed74d4eba1']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
         $manager->persist($node);
         $manager->flush();
