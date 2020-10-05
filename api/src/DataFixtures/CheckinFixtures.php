@@ -34,6 +34,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LQ0-578');
+        $node->setType('checkin');
         $node->setMethods([
             'idin'      => true,
         ]);
@@ -47,6 +48,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('TH6-7BS');
+        $node->setType('checkin');
         $node->setMethods([
             'idin'      => true,
         ]);
@@ -60,6 +62,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Bar');
         $node->setDescription('Bar');
         $node->setReference('ROW-OJ8');
+        $node->setType('checkin');
         $node->setMethods([
             'idin'      => true,
         ]);
@@ -73,6 +76,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 1');
         $node->setDescription('Tafel 1');
         $node->setReference('LT4-K75');
+        $node->setType('checkin');
         $node->setMethods([
             'facebook'  => true,
             'google'    => true,
@@ -88,6 +92,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Tafel 2');
         $node->setDescription('Tafel 2');
         $node->setReference('IDP-DQK');
+        $node->setType('checkin');
         $node->setMethods([
             'facebook'  => true,
             'google'    => true,
@@ -103,6 +108,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Graven zaal');
         $node->setDescription('Graven zaal');
         $node->setReference('I2K-HTI');
+        $node->setType('checkin');
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'9f847ce1-eeb6-4e86-ad58-86dda3e18302']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'f302b75e-a233-4ddf-95b5-f8603f2e80e9']));
@@ -112,6 +118,7 @@ class CheckinFixtures extends Fixture
         $node = new Node();
         $node->setName('Mc Donalds Zuid-Drecht');
         $node->setReference('KE8-07I');
+        $node->setType('checkin');
         $node->setDescription('Mc Donalds Zuid-Drecht');
         $node->setPassthroughUrl('https://www.mcdonalds.com/nl/nl-nl.html');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'d7aa6399-88b8-4451-9c23-dd15ca1719b5']));
@@ -122,6 +129,7 @@ class CheckinFixtures extends Fixture
         $node = new Node();
         $node->setName('Emmalaan 7');
         $node->setReference('9NV-JYR');
+        $node->setType('checkin');
         $node->setMethods([
             'facebook'  => true,
             'google'    => true,
@@ -138,6 +146,7 @@ class CheckinFixtures extends Fixture
         $node->setName('Emmalaan 9');
         $node->setDescription('Emmalaan 9');
         $node->setReference('7U1-Y80');
+        $node->setType('checkin');
         $node->setMethods([
             'facebook'  => true,
             'google'    => true,

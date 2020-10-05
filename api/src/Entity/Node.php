@@ -103,7 +103,7 @@ class Node
      * @example checkin
      *
      * @Gedmo\Versioned
-     * @Assert\Choice({"checkin", "reservation"})
+     * @Assert\Choice({"checkin", "reservation", "clockin"})
      * @Assert\Length(
      *      max = 255
      * )
