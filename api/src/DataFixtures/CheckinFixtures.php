@@ -144,7 +144,6 @@ class CheckinFixtures extends Fixture
 
         $node = new Node();
         $node->setName('champagne room');
-        $node->setReference('9NV-JYR');
         $node->setType('reservation');
         $node->setMethods([
             'facebook'  => true,
@@ -153,7 +152,7 @@ class CheckinFixtures extends Fixture
         $node->setDescription('champagne room');
         $node->setReference('9CC-Q3A');
         //$node->setPassthroughUrl('https://creativegrounds.com/');
-        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'d96c8148-16f0-4f0b-9010-e1025b9cb6f1']));
+        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'9000ffac-662d-4daf-9d26-79757a221a5a']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
         $manager->persist($node);
         $manager->flush();
