@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Node;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -41,6 +42,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'75f36e60-c798-41bb-ae11-4bc4e23aa147']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -55,6 +60,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'014016d0-292e-4373-8bd2-4a0e427ac059']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -69,6 +78,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'751c8a9f-f7cf-4f45-9c16-72ed74d4eba1']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'8b3f28c4-4163-47f1-9242-a4050bc26ede']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -85,6 +98,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'c6f5ec24-7321-4176-a588-a3bb0bf2b62e']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -101,6 +118,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'f5b473e9-a2d8-4383-b268-265c340f4bc5']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'a9398c45-7497-4dbd-8dd1-1be4f3384ed7']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -112,6 +133,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://zuid-drecht.nl');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'9f847ce1-eeb6-4e86-ad58-86dda3e18302']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'f302b75e-a233-4ddf-95b5-f8603f2e80e9']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -123,6 +148,10 @@ class CheckinFixtures extends Fixture
         $node->setPassthroughUrl('https://www.mcdonalds.com/nl/nl-nl.html');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'d7aa6399-88b8-4451-9c23-dd15ca1719b5']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'e3137e4f-e44d-4400-adbd-0fa1b4be9d65']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -139,6 +168,10 @@ class CheckinFixtures extends Fixture
         //$node->setPassthroughUrl('https://creativegrounds.com/');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'d96c8148-16f0-4f0b-9010-e1025b9cb6f1']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -154,6 +187,10 @@ class CheckinFixtures extends Fixture
         //$node->setPassthroughUrl('https://creativegrounds.com/');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'9000ffac-662d-4daf-9d26-79757a221a5a']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
         $manager->flush();
 
@@ -169,6 +206,10 @@ class CheckinFixtures extends Fixture
         //$node->setPassthroughUrl('https://creativegr ounds.com/');
         $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'a656d7c1-0313-4fd6-aba1-a12a4bcc812a']));
         $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
         $manager->persist($node);
 
         $manager->flush();
