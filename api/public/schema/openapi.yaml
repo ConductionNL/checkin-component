@@ -4211,6 +4211,24 @@ paths:
               - asc
               - desc
         -
+          name: 'order[checkinDuration]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[checkoutTime]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -4228,6 +4246,30 @@ paths:
             enum:
               - asc
               - desc
+        -
+          name: 'checkoutTime[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'checkoutTime[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'checkoutTime[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'checkoutTime[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: 'dateCreated[before]'
           in: query
@@ -5836,6 +5878,18 @@ components:
           type: array
           items:
             type: string
+        checkinDuration:
+          description: 'The standard duration of a check-in'
+          type: string
+          format: duration
+          nullable: true
+        checkoutTime:
+          description: 'The moment all check-ins are forced to end'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -5891,6 +5945,18 @@ components:
           type: array
           items:
             type: string
+        checkinDuration:
+          description: 'The standard duration of a check-in'
+          type: string
+          format: duration
+          nullable: true
+        checkoutTime:
+          description: 'The moment all check-ins are forced to end'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
       required:
         - accommodation
         - organization
@@ -5954,6 +6020,18 @@ components:
           type: array
           items:
             type: string
+        checkinDuration:
+          description: 'The standard duration of a check-in'
+          type: string
+          format: duration
+          nullable: true
+        checkoutTime:
+          description: 'The moment all check-ins are forced to end'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -6018,6 +6096,18 @@ components:
           type: array
           items:
             type: string
+        checkinDuration:
+          description: 'The standard duration of a check-in'
+          type: string
+          format: duration
+          nullable: true
+        checkoutTime:
+          description: 'The moment all check-ins are forced to end'
+          externalDocs:
+            url: 'http://schema.org/DateTime'
+          type: string
+          format: date-time
+          nullable: true
       required:
         - accommodation
         - organization
@@ -6140,6 +6230,15 @@ definitions:
         type: array
         example: 'Idin, Gmail, Facebook'
       qrConfig: []
+      checkinDuration:
+        description: 'The standard duration of a check-in'
+        type: \DateInterval
+        example: P3Y6M4DT12H30M5S
+      checkoutTime:
+        description: 'The moment all check-ins are forced to end'
+        type: string
+        example: '2020-10-08 13:53:02'
+        format: date-time
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -6188,6 +6287,15 @@ definitions:
         type: array
         example: 'Idin, Gmail, Facebook'
       qrConfig: []
+      checkinDuration:
+        description: 'The standard duration of a check-in'
+        type: \DateInterval
+        example: P3Y6M4DT12H30M5S
+      checkoutTime:
+        description: 'The moment all check-ins are forced to end'
+        type: string
+        example: '2020-10-08 13:53:02'
+        format: date-time
     required:
       - accommodation
       - organization
@@ -6295,12 +6403,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-02 08:39:52'
+        example: '2020-10-08 13:53:02'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-02 08:39:52'
+        example: '2020-10-08 13:53:02'
     required: []
   AuditTrail-write:
     properties:
@@ -6348,12 +6456,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-02 08:39:52'
+        example: '2020-10-08 13:53:02'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-02 08:39:52'
+        example: '2020-10-08 13:53:02'
     required: []
   ChangeLog-write:
     properties:
