@@ -202,6 +202,29 @@ class Node
     private $qrConfig = [];
 
     /**
+     * @var DateInterval The standard duration of a check-in
+     *
+     * @example P3Y6M4DT12H30M5S
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="dateinterval", nullable=true)
+     */
+    private $checkinDuration;
+
+    /**
+     * @var DateTime The moment all check-ins are forced to end
+     *
+     * @example 08:00
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="time", nullable=true)
+     * @Assert\DateTime
+     */
+    private $checkoutTime;
+
+    /**
      * @var DateTime The moment this request was created by the submitter
      *
      * @example 20190101
@@ -392,6 +415,30 @@ class Node
     public function setQrConfig(array $qrConfig): self
     {
         $this->qrConfig = $qrConfig;
+
+        return $this;
+    }
+
+    public function getCheckinDuration(): ?\DateInterval
+    {
+        return $this->checkinDuration;
+    }
+
+    public function setCheckinDuration(\DateInterval $checkinDuration): self
+    {
+        $this->checkinDuration = $checkinDuration;
+
+        return $this;
+    }
+
+    public function getCheckoutTime(): ?\DateTimeInterface
+    {
+        return $this->checkoutTime;
+    }
+
+    public function setCheckoutTime(\DateTimeInterface $checkoutTime): self
+    {
+        $this->checkoutTime = $checkoutTime;
 
         return $this;
     }
