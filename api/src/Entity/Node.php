@@ -64,7 +64,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","organization": "partial","name": "partial","description": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={"reference": "iexact", "type": "exact", "organization": "partial","name": "partial","description": "partial"})
  */
 class Node
 {
