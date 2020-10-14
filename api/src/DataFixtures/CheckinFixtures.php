@@ -198,6 +198,34 @@ class CheckinFixtures extends Fixture
         $manager->flush();
 
         $node = new Node();
+        $node->setName('mail list');
+        $node->setType('mailing');
+        $node->setMethods([
+            'facebook'  => true,
+            'google'    => true,
+        ]);
+        $node->setConfiguration([
+            'lifespan'     => '365', //how many hours before reservation can we cancel
+            'requiredInfo' => [
+                'first name',
+                'suffix',
+                'last name',
+                'email',
+            ],
+        ]);
+        $node->setDescription('mailing list');
+        $node->setReference('9CV-Q44');
+        //$node->setPassthroughUrl('https://creativegrounds.com/');
+        $node->setAccommodation($this->commonGroundService->cleanUrl(['component'=>'lc', 'type'=>'accommodations', 'id'=>'9000ffac-662d-4daf-9d26-79757a221a5a']));
+        $node->setOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'62bff497-cb91-443e-9da9-21a0b38cd536']));
+        $node->setCheckinDuration(new \DateInterval('PT2H'));
+        $checkoutTime = new DateTime();
+        $checkoutTime->setTime(00, 00);
+        $node->setCheckoutTime($checkoutTime);
+        $manager->persist($node);
+        $manager->flush();
+
+        $node = new Node();
         $node->setName('Emmalaan 9');
         $node->setDescription('Emmalaan 9');
         $node->setReference('7U1-Y80');

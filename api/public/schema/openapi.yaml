@@ -4229,6 +4229,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[configuration]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -4319,11 +4328,43 @@ paths:
           schema:
             type: string
         -
+          name: accommodation
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'accommodation[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: reference
           in: query
           required: false
           schema:
             type: string
+        -
+          name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'type[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
         -
           name: organization
           in: query
@@ -5890,6 +5931,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        configuration:
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -5957,6 +6002,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        configuration:
+          type: array
+          items:
+            type: string
       required:
         - accommodation
         - organization
@@ -6032,6 +6081,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        configuration:
+          type: array
+          items:
+            type: string
         dateCreated:
           writeOnly: true
           description: 'The moment this request was created by the submitter'
@@ -6108,6 +6161,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        configuration:
+          type: array
+          items:
+            type: string
       required:
         - accommodation
         - organization
@@ -6237,8 +6294,9 @@ definitions:
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
         type: string
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
         format: date-time
+      configuration: []
       dateCreated:
         description: 'The moment this request was created by the submitter'
         type: \DateTime
@@ -6294,8 +6352,9 @@ definitions:
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
         type: string
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
         format: date-time
+      configuration: []
     required:
       - accommodation
       - organization
@@ -6403,12 +6462,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
     required: []
   AuditTrail-write:
     properties:
@@ -6456,12 +6515,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-08 13:53:02'
+        example: '2020-10-14 13:52:03'
     required: []
   ChangeLog-write:
     properties:
