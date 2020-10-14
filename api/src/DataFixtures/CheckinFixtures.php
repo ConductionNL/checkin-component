@@ -182,6 +182,9 @@ class CheckinFixtures extends Fixture
             'facebook'  => true,
             'google'    => true,
         ]);
+        $node->setConfiguration([
+           'cancelable' => '1', //how many hours before reservation can we cancel
+        ]);
         $node->setDescription('champagne room');
         $node->setReference('9CC-Q3A');
         //$node->setPassthroughUrl('https://creativegrounds.com/');
