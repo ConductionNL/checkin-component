@@ -205,13 +205,13 @@ class CheckinFixtures extends Fixture
             'google'    => true,
         ]);
         $node->setConfiguration([
-            'lifespan' => '365', //how many hours before reservation can we cancel
+            'lifespan'     => '365', //how many hours before reservation can we cancel
             'requiredInfo' => [
                 'first name',
                 'suffix',
                 'last name',
                 'email',
-            ]
+            ],
         ]);
         $node->setDescription('mailing list');
         $node->setReference('9CV-Q44');

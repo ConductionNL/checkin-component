@@ -198,7 +198,7 @@ class Checkin
     public function createDateToDestory()
     {
         $date = new DateTime('today');
-        $node= $this->getNode();
+        $node = $this->getNode();
         $config = $node->getConfiguration();
 
         if (isset($config['lifespan'])) {
