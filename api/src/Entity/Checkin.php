@@ -198,7 +198,14 @@ class Checkin
     public function createDateToDestory()
     {
         $date = new DateTime('today');
-        $date->add(new DateInterval('P14D'));
+        $node= $this->getNode();
+        $config = $node->getConfiguration();
+
+        if (isset($config['lifespan'])) {
+            $date->add(new DateInterval('P'.$config['lifespan'].'D'));
+        } else {
+            $date->add(new DateInterval('P14D'));
+        }
 
         $this->setDateToDestroy($date);
     }
