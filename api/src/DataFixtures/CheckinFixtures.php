@@ -212,7 +212,7 @@ class CheckinFixtures extends Fixture
                 'last name',
                 'email',
             ],
-            'noticePeriod' => '0'
+            'noticePeriod' => '0',
         ]);
         $node->setDescription('mailing list');
         $node->setReference('9CV-Q44');
