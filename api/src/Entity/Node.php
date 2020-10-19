@@ -64,7 +64,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"reference": "iexact","organization": "partial","name": "partial","description": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={"accommodation": "exact", "reference": "iexact", "type": "exact", "organization": "partial","name": "partial","description": "partial"})
  */
 class Node
 {
@@ -103,7 +103,7 @@ class Node
      * @example checkin
      *
      * @Gedmo\Versioned
-     * @Assert\Choice({"checkin", "reservation", "clockin"})
+     * @Assert\Choice({"checkin", "reservation", "clockin", "mailing"})
      * @Assert\Length(
      *      max = 255
      * )
@@ -223,6 +223,13 @@ class Node
      * @Assert\DateTime
      */
     private $checkoutTime;
+
+    /**
+     * @Gedmo\Versioned
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json")
+     */
+    private $configuration = [];
 
     /**
      * @var DateTime The moment this request was created by the submitter
@@ -415,6 +422,18 @@ class Node
     public function setQrConfig(array $qrConfig): self
     {
         $this->qrConfig = $qrConfig;
+
+        return $this;
+    }
+
+    public function getConfiguration(): ?array
+    {
+        return $this->configuration;
+    }
+
+    public function setConfiguration(array $configuration): self
+    {
+        $this->configuration = $configuration;
 
         return $this;
     }
