@@ -59,11 +59,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=App\Repository\CheckinRepository::class)
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="checkin_reference", columns={"reference"})})
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
+ * @ApiFilter(SearchFilter::class, properties={"node.organization": "partial","node.accommodation": "partial","person": "partial","userUrl": "partial"})
  */
 class Checkin
 {
@@ -83,25 +83,11 @@ class Checkin
     private $id;
 
     /**
-     * @var string The human readable id for this node
-     *
-     * @Gedmo\Versioned
-     *
-     * @example Q32-AD8
-     * @Groups({"read"})
-     * @Assert\Length(
-     *     max=255
-     * )
-     * @ORM\Column(type="string", length=7, nullable=false, unique=true)
-     */
-    private $reference;
-
-    /**
      * @var Node The node where this checkin takes place
      *
      * @Groups({"read","write"})
      * @Assert\NotNull
-     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins")
+     * @ORM\ManyToOne(targetEntity=Node::class, inversedBy="checkins", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $node;
@@ -130,12 +116,26 @@ class Checkin
     private $userUrl;
 
     /**
+     * @var string The provider used to register this checkin.
+     *
+     * @example session
+     *
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *      max = 15
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $provider = 'session';
+
+    /**
      * @var DateTime The moment this check-in ended by leaving the node
      *
      * @example 20190101
      *
-     * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Groups({"read", "write"})
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCheckedOut;
@@ -192,23 +192,20 @@ class Checkin
      *  */
     public function prePersist()
     {
-        // If no reference has been provided we want to make one
-        if (!$this->getReference()) {
-            $validChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $part1 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-            $part2 = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 3);
-
-            $reference = $part1.'-'.$part2;
-            $this->setReference($reference);
-        }
-
         $this->createDateToDestory();
     }
 
     public function createDateToDestory()
     {
         $date = new DateTime('today');
-        $date->add(new DateInterval('P14D'));
+        $node = $this->getNode();
+        $config = $node->getConfiguration();
+
+        if (isset($config['lifespan'])) {
+            $date->add(new DateInterval('P'.$config['lifespan'].'D'));
+        } else {
+            $date->add(new DateInterval('P14D'));
+        }
 
         $this->setDateToDestroy($date);
     }
@@ -221,18 +218,6 @@ class Checkin
     public function setId(string $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
 
         return $this;
     }
@@ -269,6 +254,18 @@ class Checkin
     public function setUserUrl(string $userUrl): self
     {
         $this->userUrl = $userUrl;
+
+        return $this;
+    }
+
+    public function getProvider(): ?string
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(string $provider): self
+    {
+        $this->provider = $provider;
 
         return $this;
     }
