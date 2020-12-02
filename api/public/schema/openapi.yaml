@@ -10,9 +10,9 @@ info:
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/checkin-component) / [zip](https://github.com/ConductionNL/checkin-component/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/chin-php) 
-    - Datamodel: [postman](/schema/chin.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/chin.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /audit_trails:
@@ -6462,12 +6462,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-02 14:56:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-02 14:56:20'
     required: []
   AuditTrail-write:
     properties:
@@ -6515,12 +6515,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-02 14:56:20'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-02 14:56:20'
     required: []
   ChangeLog-write:
     properties:
