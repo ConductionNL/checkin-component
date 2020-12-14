@@ -6,7 +6,7 @@ use App\Entity\Node;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class CheckinFixtures extends Fixture
@@ -163,6 +163,9 @@ class CheckinFixtures extends Fixture
             'facebook'  => true,
             'google'    => true,
         ]);
+        $node->setConfiguration([
+            'checkinDuration' => '4'
+        ]);
         $node->setDescription('Emmalaan 7');
         $node->setReference('9NV-JYR');
         //$node->setPassthroughUrl('https://creativegrounds.com/');
@@ -212,7 +215,7 @@ class CheckinFixtures extends Fixture
                 'last name',
                 'email',
             ],
-            'noticePeriod' => '0',
+            'noticePeriod' => 'P0D'
         ]);
         $node->setDescription('mailing list');
         $node->setReference('9CV-Q44');
