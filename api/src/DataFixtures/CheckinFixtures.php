@@ -164,7 +164,7 @@ class CheckinFixtures extends Fixture
             'google'    => true,
         ]);
         $node->setConfiguration([
-            'checkinDuration' => '4'
+            'checkinDuration' => '4',
         ]);
         $node->setDescription('Emmalaan 7');
         $node->setReference('9NV-JYR');
@@ -215,7 +215,7 @@ class CheckinFixtures extends Fixture
                 'last name',
                 'email',
             ],
-            'noticePeriod' => 'P0D'
+            'noticePeriod' => 'P0D',
         ]);
         $node->setDescription('mailing list');
         $node->setReference('9CV-Q44');
