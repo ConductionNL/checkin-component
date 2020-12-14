@@ -5936,7 +5936,6 @@ components:
           items:
             type: string
         dateCreated:
-          writeOnly: true
           description: 'The moment this request was created by the submitter'
           type: string
           format: date-time
@@ -6086,7 +6085,6 @@ components:
           items:
             type: string
         dateCreated:
-          writeOnly: true
           description: 'The moment this request was created by the submitter'
           type: string
           format: date-time
@@ -6294,7 +6292,7 @@ definitions:
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
         type: string
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
         format: date-time
       configuration: []
       dateCreated:
@@ -6352,7 +6350,7 @@ definitions:
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
         type: string
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
         format: date-time
       configuration: []
     required:
@@ -6462,12 +6460,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
     required: []
   AuditTrail-write:
     properties:
@@ -6515,12 +6513,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-14 13:52:03'
+        example: '2020-12-14 15:20:33'
     required: []
   ChangeLog-write:
     properties:
