@@ -220,7 +220,6 @@ class Node
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="time", nullable=true)
-     * @Assert\DateTime
      */
     private $checkoutTime;
 

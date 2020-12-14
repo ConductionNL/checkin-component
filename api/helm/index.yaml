@@ -3,10 +3,10 @@ entries:
   chin:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-12-14T15:21:31.6649006Z"
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: 087c9fe6dfb90405053d887d8b39ae93b7ea1022e06da1ccb6da3a49c675ff38
+    created: "2020-12-14T16:38:09.6327841Z"
+    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
+      beschikbaar.
+    digest: 9f6145221b43c81e40312626e1327c8b97ccef1fc10aff2d835469e3ae5ee5c7
     home: chin.zzuid-drecht.nl
     icon: chin.zuid-drecht.nl
     name: chin
@@ -18,7 +18,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2020-12-14T15:21:31.6764806Z"
+    created: "2020-12-14T16:38:09.6441387Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,4 +47,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2020-12-14T15:21:31.6495886Z"
+generated: "2020-12-14T16:38:09.6162958Z"
