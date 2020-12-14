@@ -4779,8 +4779,6 @@ components:
           nullable: true
         checkoutTime:
           description: 'The moment all check-ins are forced to end'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -4849,8 +4847,6 @@ components:
           nullable: true
         checkoutTime:
           description: 'The moment all check-ins are forced to end'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -4928,8 +4924,6 @@ components:
           nullable: true
         checkoutTime:
           description: 'The moment all check-ins are forced to end'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -5007,8 +5001,6 @@ components:
           nullable: true
         checkoutTime:
           description: 'The moment all check-ins are forced to end'
-          externalDocs:
-            url: 'http://schema.org/DateTime'
           type: string
           format: date-time
           nullable: true
@@ -5144,9 +5136,8 @@ definitions:
         example: P3Y6M4DT12H30M5S
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
-        type: string
-        example: '2020-12-14 15:26:06'
-        format: date-time
+        type: \DateTime
+        example: '08:00'
       configuration: []
       dateCreated:
         description: 'The moment this request was created by the submitter'
@@ -5202,9 +5193,8 @@ definitions:
         example: P3Y6M4DT12H30M5S
       checkoutTime:
         description: 'The moment all check-ins are forced to end'
-        type: string
-        example: '2020-12-14 15:26:06'
-        format: date-time
+        type: \DateTime
+        example: '08:00'
       configuration: []
     required:
       - accommodation
@@ -5313,12 +5303,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-14 15:26:06'
+        example: '2020-12-14 16:39:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-14 15:26:06'
+        example: '2020-12-14 16:39:19'
     required: []
   AuditTrail-write:
     properties:
@@ -5366,12 +5356,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-14 15:26:06'
+        example: '2020-12-14 16:39:19'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-14 15:26:06'
+        example: '2020-12-14 16:39:19'
     required: []
   ChangeLog-write:
     properties:
