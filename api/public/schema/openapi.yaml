@@ -2197,6 +2197,22 @@ paths:
           schema:
             type: string
         -
+          name: node.type
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'node.type[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: node.organization
           in: query
           required: false
@@ -5303,12 +5319,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-14 16:39:19'
+        example: '2021-01-08 09:26:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-14 16:39:19'
+        example: '2021-01-08 09:26:41'
     required: []
   AuditTrail-write:
     properties:
@@ -5356,12 +5372,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-14 16:39:19'
+        example: '2021-01-08 09:26:41'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-14 16:39:19'
+        example: '2021-01-08 09:26:41'
     required: []
   ChangeLog-write:
     properties:
