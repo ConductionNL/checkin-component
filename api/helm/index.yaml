@@ -3,13 +3,26 @@ entries:
   chin:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2021-01-08T09:32:13.1274942Z"
+    created: "2021-02-16T23:22:29.8301327Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: cc005f7aff40fdce0804c0bc644dfdfe6bfbc2c5f5001d07172411dd6539064a
+    digest: 57c847214954fb38e863a8a68f7717a22f48e7528671c2df46e2050890aca870
     home: chin.zzuid-drecht.nl
     icon: chin.zuid-drecht.nl
+    keywords:
+    - commonground
+    - haven
+    - nlx
+    - component
+    maintainers:
+    - email: ruben@conduction.nl
+      name: Ruben van der Linde
+    - email: info@conduction.nl
+      name: Conduction
     name: chin
+    sources:
+    - https://commonground.conduction.nl/
+    - https://www.commonground.nl/
     urls:
     - chin-0.1.0.tgz
     version: 0.1.0
@@ -18,7 +31,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-01-08T09:32:13.1384912Z"
+    created: "2021-02-16T23:22:29.844717Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,4 +60,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2021-01-08T09:32:13.106944Z"
+generated: "2021-02-16T23:22:29.7982267Z"
