@@ -1,4 +1,4 @@
-# chin
+# checkin-component
 
 Description
 ----

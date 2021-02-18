@@ -11,8 +11,8 @@ settings:
   repro: https://github.com/ConductionNL/checkin-component
   demo: chin.zuid-drecht.nl
   domain: zuid-drecht.nl
-  subdomain: chin
-  subpath: chin
+  subdomain: checkin-component
+  subpath: checkin-component
   subpathRouting: true
   env: dev
   web: false
