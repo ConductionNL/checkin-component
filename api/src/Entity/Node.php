@@ -220,7 +220,6 @@ class Node
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="time", nullable=true)
-     * @Assert\DateTime
      */
     private $checkoutTime;
 
@@ -460,6 +459,11 @@ class Node
         $this->checkoutTime = $checkoutTime;
 
         return $this;
+    }
+
+    public function getDateCreated(): ?DateTimeInterface
+    {
+        return $this->dateCreated;
     }
 
     public function setDateCreated(DateTimeInterface $dateCreated): self
