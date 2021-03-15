@@ -63,7 +63,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
  * @ApiFilter(SearchFilter::class)
- * @ApiFilter(SearchFilter::class, properties={"node.type": "exact", "node.organization": "partial","node.accommodation": "partial","person": "partial","userUrl": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "node.type": "exact",
+ *      "node.organization": "partial",
+ *     "node.accommodation": "partial",
+ *     "node.event": "exact",
+ *     "person": "partial",
+ *     "userUrl": "partial"})
  */
 class Checkin
 {
