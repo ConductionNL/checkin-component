@@ -64,7 +64,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
- * @ApiFilter(SearchFilter::class, properties={"accommodation": "exact", "reference": "iexact", "type": "exact", "organization": "partial","name": "partial","description": "partial"})
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "accommodation": "exact",
+ *     "event": "exact",
+ *     "reference": "iexact",
+ *     "type": "exact",
+ *     "organization": "partial",
+ *     "name": "partial",
+ *     "description": "partial"})
  */
 class Node
 {
@@ -152,6 +159,18 @@ class Node
      * @ORM\Column(type="string", length=255)
      */
     private $accommodation;
+
+    /**
+     * @var string The Event of this node
+     *
+     * @example https://example.org./api/v1/arc/events/id
+     *
+     * @Groups({"read","write"})
+     * @Assert\Url
+     * @Assert\NotNull
+     * @ORM\Column(type="string", length=255)
+     */
+    private $event;
 
     /**
      * @var string The organization that ownes this node
@@ -342,6 +361,18 @@ class Node
     public function setAccommodation(string $accommodation): self
     {
         $this->accommodation = $accommodation;
+
+        return $this;
+    }
+
+    public function getEvent(): ?string
+    {
+        return $this->event;
+    }
+
+    public function setEvent(string $event): self
+    {
+        $this->event = $event;
 
         return $this;
     }
